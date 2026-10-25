@@ -1,0 +1,71 @@
+/* MBC design tokens
+   Source of truth: mbcgroup.ai stylesheet, extracted Oct 25 2026.
+   Every color, radius and type value below is read from their live CSS,
+   not approximated. Templates and the gallery consume these variables. */
+
+:root {
+  /* Canvas and surfaces */
+  --mbc-bg: #000000;              /* page canvas, dark-only */
+  --mbc-surface: #0a0b11;         /* raised panels, mega menu */
+  --mbc-surface-2: #08080c;       /* deepest sections */
+  --mbc-surface-tint: #0a0c33;    /* photo tiles, tinted panels */
+  --mbc-nav-glass: rgba(12, 13, 19, .62); /* floating pill nav */
+
+  /* Text */
+  --mbc-text: #ffffff;
+  --mbc-text-88: rgba(255, 255, 255, .88); /* nav and primary body */
+  --mbc-text-75: rgba(255, 255, 255, .75);
+  --mbc-text-70: rgba(255, 255, 255, .70);
+  --mbc-text-58: rgba(255, 255, 255, .58); /* secondary body */
+  --mbc-text-50: rgba(255, 255, 255, .50);
+
+  /* Accent: periwinkle, NOT cyan. Cyan appears only in the logo asset. */
+  --mbc-accent: #728EF7;
+  --mbc-accent-pale: #c9d3ff;      /* hover on accent links */
+  --mbc-accent-07: rgba(114, 142, 247, .07);
+  --mbc-accent-08: rgba(114, 142, 247, .08);
+  --mbc-accent-12: rgba(114, 142, 247, .12);
+  --mbc-accent-14: rgba(114, 142, 247, .14);
+  --mbc-accent-16: rgba(114, 142, 247, .16);
+  --mbc-accent-35: rgba(114, 142, 247, .35);
+
+  /* Borders and hairlines */
+  --mbc-border-10: rgba(255, 255, 255, .10);
+  --mbc-border-12: rgba(255, 255, 255, .12);
+  --mbc-border-14: rgba(255, 255, 255, .14);
+  --mbc-border-50: rgba(255, 255, 255, .50); /* outline button border */
+  --mbc-inset-highlight: rgba(255, 255, 255, .06);
+
+  /* Radii, exact from their CSS */
+  --mbc-radius-focus: 4px;
+  --mbc-radius-item: 10px;
+  --mbc-radius-card: 14px;
+  --mbc-radius-panel: 18px;
+  --mbc-radius-pill: 999px;
+
+  /* Type */
+  --mbc-font-sans: 'Inter Tight', sans-serif;   /* 300-700 */
+  --mbc-font-mono: 'DM Mono', monospace;        /* 400-500 */
+  --mbc-h1-size: clamp(40px, 5vw, 76px);
+  --mbc-h2-size: clamp(24px, 2.7vw, 40px);
+  --mbc-h1-leading: 0.92;
+  --mbc-h2-leading: 1.02;
+  --mbc-h1-tracking: -0.03em;
+  --mbc-body-tracking: -0.02em;
+  --mbc-mono-size: 12px;
+  --mbc-mono-size-sm: 11px;
+  --mbc-mono-tracking: 0.03em;
+  --mbc-mono-tracking-wide: 0.08em;
+
+  /* Depth */
+  --mbc-shadow-nav: 0 0 0 1px var(--mbc-accent-07),
+                    0 10px 40px var(--mbc-accent-14),
+                    inset 0 1px 0 var(--mbc-inset-highlight);
+  --mbc-shadow-panel: 0 0 0 1px var(--mbc-accent-08),
+                      0 30px 80px rgba(0, 0, 0, .6),
+                      0 10px 60px var(--mbc-accent-12);
+  --mbc-nav-blur: blur(24px) saturate(160%);
+
+  /* Scrim over photo tiles */
+  --mbc-tile-scrim: linear-gradient(180deg, rgba(7, 7, 13, .15), rgba(7, 7, 13, .92));
+}

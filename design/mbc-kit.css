@@ -1,0 +1,246 @@
+/* MBC component kit v1
+   Consumes design/tokens.css. Matches mbcgroup.ai's live components:
+   floating pill nav, mono labels, outline pill buttons, dark cards,
+   blinking status dot, numbered sections, fading hairlines. */
+
+/* ---- Type primitives ---- */
+
+.mbc-display {
+  font-family: var(--mbc-font-sans);
+  font-weight: 600;
+  font-size: var(--mbc-h1-size);
+  line-height: var(--mbc-h1-leading);
+  letter-spacing: var(--mbc-h1-tracking);
+  text-transform: uppercase;
+  color: var(--mbc-text);
+  margin: 0;
+}
+
+.mbc-display-sm {
+  font-family: var(--mbc-font-sans);
+  font-weight: 600;
+  font-size: var(--mbc-h2-size);
+  line-height: var(--mbc-h2-leading);
+  letter-spacing: var(--mbc-h1-tracking);
+  text-transform: uppercase;
+  color: var(--mbc-text);
+}
+
+.mbc-body {
+  font: 400 15px/1.5 var(--mbc-font-sans);
+  letter-spacing: var(--mbc-body-tracking);
+  color: var(--mbc-text-88);
+}
+
+.mbc-body-muted {
+  font: 400 13px/1.4 var(--mbc-font-sans);
+  color: var(--mbc-text-58);
+}
+
+.mbc-mono {
+  font: 400 var(--mbc-mono-size) var(--mbc-font-mono);
+  text-transform: uppercase;
+  letter-spacing: var(--mbc-mono-tracking);
+  color: var(--mbc-text-88);
+}
+
+.mbc-mono-label {
+  font: 400 var(--mbc-mono-size-sm) var(--mbc-font-mono);
+  text-transform: uppercase;
+  letter-spacing: var(--mbc-mono-tracking-wide);
+  color: var(--mbc-accent);
+}
+
+/* ---- Links ---- */
+
+.mbc-link {
+  color: var(--mbc-text-88);
+  text-decoration: none;
+  font: 400 var(--mbc-mono-size) var(--mbc-font-mono);
+  text-transform: uppercase;
+  letter-spacing: var(--mbc-mono-tracking);
+}
+.mbc-link:hover { color: var(--mbc-accent); }
+.mbc-link:focus-visible {
+  outline: 2px solid var(--mbc-accent);
+  outline-offset: 4px;
+  border-radius: var(--mbc-radius-focus);
+}
+
+.mbc-link-accent {
+  color: var(--mbc-accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+.mbc-link-accent:hover { color: var(--mbc-accent-pale); }
+
+/* ---- Outline pill button (their primary CTA shape) ---- */
+
+.mbc-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 16px;
+  border-radius: var(--mbc-radius-pill);
+  background: transparent;
+  border: 1px solid var(--mbc-border-50);
+  color: var(--mbc-text);
+  font: 400 var(--mbc-mono-size) var(--mbc-font-mono);
+  text-transform: uppercase;
+  letter-spacing: var(--mbc-mono-tracking);
+  white-space: nowrap;
+  cursor: pointer;
+  text-decoration: none;
+}
+.mbc-btn:hover { background: rgba(255, 255, 255, .12); }
+.mbc-btn:focus-visible {
+  outline: 2px solid var(--mbc-accent);
+  outline-offset: 4px;
+}
+
+/* Accent variant: periwinkle fill, used sparingly */
+.mbc-btn-accent {
+  background: var(--mbc-accent);
+  border-color: var(--mbc-accent);
+  color: var(--mbc-text);
+}
+.mbc-btn-accent:hover { background: var(--mbc-accent-pale); }
+
+/* ---- Floating pill nav (their header, Oct 3 consolidated style) ---- */
+
+.mbc-nav {
+  position: sticky;
+  top: 12px;
+  z-index: 200;
+  margin: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 18px;
+  border-radius: var(--mbc-radius-card);
+  background: var(--mbc-nav-glass);
+  backdrop-filter: var(--mbc-nav-blur);
+  -webkit-backdrop-filter: var(--mbc-nav-blur);
+  border: 1px solid var(--mbc-border-12);
+  box-shadow: var(--mbc-shadow-nav);
+}
+.mbc-nav .logo { height: 24px; width: auto; display: block; flex: 0 0 auto; }
+.mbc-nav .divider {
+  width: 1px; height: 18px;
+  background: var(--mbc-border-14);
+  margin-left: 18px;
+}
+.mbc-nav .links { display: flex; gap: clamp(12px, 1.5vw, 22px); margin-right: auto; }
+
+/* ---- Blinking status dot (live indicators, Echo OS style) ---- */
+
+.mbc-dot::before {
+  content: "";
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--mbc-accent);
+  box-shadow: 0 0 8px var(--mbc-accent);
+  margin-right: 7px;
+  vertical-align: 1px;
+  animation: mbc-blink 2s ease-in-out infinite;
+}
+@keyframes mbc-blink { 50% { opacity: .35; } }
+
+/* ---- Cards and panels ---- */
+
+.mbc-card {
+  background: var(--mbc-surface);
+  border: 1px solid var(--mbc-border-14);
+  border-radius: var(--mbc-radius-card);
+}
+.mbc-card:hover { border-color: var(--mbc-accent-35); }
+
+.mbc-panel {
+  background: var(--mbc-surface);
+  border: 1px solid var(--mbc-border-14);
+  border-radius: var(--mbc-radius-panel);
+  padding: 28px;
+  box-shadow: var(--mbc-shadow-panel);
+}
+
+.mbc-tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 220px;
+  border-radius: var(--mbc-radius-card);
+  overflow: hidden;
+  padding: 18px;
+  background: var(--mbc-surface-tint) center / cover;
+  border: 1px solid var(--mbc-border-14);
+}
+.mbc-tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--mbc-tile-scrim);
+}
+.mbc-tile > * { position: relative; }
+
+/* ---- Numbered sections ([ 01 ] + [ YEAR ] pattern) ---- */
+
+.mbc-section { padding: 96px 32px; max-width: 1200px; }
+.mbc-section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.mbc-section-num {
+  font: 400 var(--mbc-mono-size) var(--mbc-font-mono);
+  color: var(--mbc-text-50);
+}
+.mbc-section-year {
+  font: 400 var(--mbc-mono-size) var(--mbc-font-mono);
+  color: var(--mbc-text-50);
+}
+
+/* ---- Thin hairline that fades out partway across the page ---- */
+
+.mbc-rule {
+  height: 1px;
+  border: 0;
+  margin: 24px 0;
+  background: linear-gradient(90deg, var(--mbc-accent) 0%, var(--mbc-border-12) 30%, transparent 70%);
+}
+
+/* ---- Numbered index list (services, gallery cards) ---- */
+
+.mbc-index { list-style: none; margin: 0; padding: 0; }
+.mbc-index li {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 14px 12px;
+  margin: 0 -12px;
+  border-radius: var(--mbc-radius-item);
+  border-bottom: 1px solid var(--mbc-border-10);
+}
+.mbc-index li:hover { background: var(--mbc-accent-16); }
+.mbc-index .n {
+  font: 400 var(--mbc-mono-size) var(--mbc-font-mono);
+  color: var(--mbc-text-50);
+}
+.mbc-index b {
+  font: 600 16px var(--mbc-font-sans);
+  letter-spacing: var(--mbc-body-tracking);
+  color: var(--mbc-text);
+}
+.mbc-index span {
+  font: 400 13px/1.35 var(--mbc-font-sans);
+  color: var(--mbc-text-58);
+}
+
+/* ---- Canvas ---- */
+
+.mbc-page {
+  background: var(--mbc-bg);
+  color: var(--mbc-text);
+  font-family: var(--mbc-font-sans);
+}
