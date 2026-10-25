@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reviews</title>
+<style>
+  :root { --app-accent:#1d4ed8; --app-ink:#0f172a; --app-muted:#64748b; --app-line:#e2e8f0; --app-bg:#ffffff; --app-soft:#f8fafc; }
+  * { box-sizing:border-box; }
+  body { font:16px/1.5 system-ui,sans-serif; color:var(--app-ink); margin:0; padding:20px; background:var(--app-bg); }
+  .head { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:14px; }
+  .stars { color:#f59e0b; letter-spacing:2px; }
+  .avg { color:var(--app-muted); font-size:14px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; }
+  .card { background:var(--app-soft); border:1px solid var(--app-line); border-radius:10px; padding:14px; }
+  .card p { margin:8px 0 0; }
+  .who { color:var(--app-muted); font-size:13px; }
+</style>
+</head>
+<body>
+<div class="head"><span class="stars">★★★★★</span><span class="avg" id="avg"></span></div>
+<div class="grid" id="grid"></div>
+<script type="application/json" id="app-config">
+{
+  "average": "4.9 from 183+ Google reviews",
+  "reviews": [
+    { "stars": 5, "quote": "Found the slab leak in an hour, quoted it flat, and the crew patched the drywall so well the painter asked who did it.", "who": "Dana W., Wash Park" },
+    { "stars": 5, "quote": "Water heater died at 6am, they had a new one in by noon. Texted me the quote before touching a wrench.", "who": "Marcus T., Sloan's Lake" },
+    { "stars": 5, "quote": "Two other companies wanted to dig up the patio. These folks ran a camera, found the offset, and spot-repaired it instead.", "who": "Priya S., Highland" }
+  ]
+}
+</script>
+<script>
+(function () {
+  var cfg = null;
+  try { cfg = JSON.parse(document.getElementById("app-config").textContent); } catch (e) {}
+  if (!cfg || !cfg.reviews) { cfg = { average: "", reviews: [] }; }
+  document.getElementById("avg").textContent = cfg.average || "";
+  var grid = document.getElementById("grid");
+  (cfg.reviews || []).forEach(function (r) {
+    var d = document.createElement("div"); d.className = "card";
+    var s = document.createElement("span"); s.className = "stars";
+    s.textContent = "★★★★★".slice(0, Math.max(1, Math.min(5, r.stars || 5)));
+    var qt = document.createElement("p"); qt.textContent = "\u201c" + r.quote + "\u201d";
+    var w = document.createElement("p"); w.className = "who"; w.textContent = "\u2014 " + r.who;
+    d.appendChild(s); d.appendChild(qt); d.appendChild(w);
+    grid.appendChild(d);
+  });
+})();
+</script>
+</body>
+</html>

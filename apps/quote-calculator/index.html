@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instant estimate</title>
+<style>
+  :root { --app-accent:#1d4ed8; --app-ink:#0f172a; --app-muted:#64748b; --app-line:#e2e8f0; --app-bg:#ffffff; --app-soft:#f8fafc; }
+  * { box-sizing:border-box; }
+  body { font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--app-ink); margin:0; padding:20px; background:var(--app-bg); }
+  h2 { margin:0 0 4px; font-size:20px; letter-spacing:-.01em; }
+  .hint { margin:0 0 16px; color:var(--app-muted); font-size:13px; }
+  label { display:block; font-weight:600; margin:14px 0 5px; font-size:14px; }
+  select { width:100%; padding:10px; border:1px solid var(--app-line); border-radius:8px; font:inherit; background:#fff; }
+  input[type=range] { width:100%; accent-color:var(--app-accent); }
+  .urg { display:flex; gap:8px; }
+  .urg button { flex:1; padding:9px 4px; border:1px solid var(--app-line); border-radius:8px; background:#fff; font:600 13px system-ui,sans-serif; cursor:pointer; color:var(--app-ink); }
+  .urg button[aria-pressed="true"] { background:var(--app-accent); color:#fff; border-color:var(--app-accent); }
+  .quote { margin-top:18px; padding:16px; border:1px solid var(--app-line); border-radius:10px; background:var(--app-soft); }
+  .range { font-size:28px; font-weight:800; letter-spacing:-.02em; }
+  .note { color:var(--app-muted); font-size:12px; margin-top:4px; }
+  .cta { display:inline-block; margin-top:14px; background:var(--app-accent); color:#fff; text-decoration:none; font-weight:700; padding:12px 20px; border-radius:8px; font-size:15px; }
+</style>
+</head>
+<body>
+<h2>Instant estimate</h2>
+<p class="hint">Pick a job and get a ballpark in ten seconds.</p>
+<label for="svc">Service</label>
+<select id="svc"></select>
+<label for="size">Home size: <output id="sizeout">1,500</output> sq ft</label>
+<input id="size" type="range" min="500" max="5000" step="100" value="1500">
+<label>How soon do you need it?</label>
+<div class="urg" id="urg"></div>
+<div class="quote">
+  <div class="range" id="range">$—</div>
+  <div class="note" id="note">Ballpark only. Final flat quote confirmed on site before work starts.</div>
+</div>
+<a class="cta" id="cta" href="#">Lock in this estimate</a>
+<script type="application/json" id="app-config">
+{
+  "phone": "+13035550114",
+  "ctaText": "Lock in this estimate",
+  "note": "Ballpark only. Final flat quote confirmed on site before work starts.",
+  "services": [
+    { "name": "Drain cleaning", "low": 150, "high": 350, "sizeFactor": 0.10 },
+    { "name": "Leak detection and repair", "low": 180, "high": 500, "sizeFactor": 0.10 },
+    { "name": "Water heater repair or replacement", "low": 250, "high": 2600, "sizeFactor": 0.15 },
+    { "name": "Whole-house repipe", "low": 2800, "high": 6500, "sizeFactor": 1.20 },
+    { "name": "Sewer camera inspection", "low": 200, "high": 450, "sizeFactor": 0 },
+    { "name": "Fixture install or swap", "low": 120, "high": 400, "sizeFactor": 0 }
+  ],
+  "urgency": [
+    { "label": "Flexible", "mult": 0.90 },
+    { "label": "This week", "mult": 1.00 },
+    { "label": "Emergency, today", "mult": 1.35 }
+  ]
+}
+</script>
+<script>
+(function () {
+  var cfg = null;
+  try { cfg = JSON.parse(document.getElementById("app-config").textContent); } catch (e) {}
+  if (!cfg || !cfg.services) {
+    cfg = {
+      phone: "+13035550114",
+      services: [
+        { name: "Drain cleaning", low: 150, high: 350, sizeFactor: 0.10 },
+        { name: "Leak detection and repair", low: 180, high: 500, sizeFactor: 0.10 }
+      ],
+      urgency: [
+        { label: "Flexible", mult: 0.90 },
+        { label: "This week", mult: 1.00 },
+        { label: "Emergency, today", mult: 1.35 }
+      ]
+    };
+  }
+  var svc = document.getElementById("svc"), size = document.getElementById("size"),
+      sizeout = document.getElementById("sizeout"), urg = document.getElementById("urg"),
+      range = document.getElementById("range"), note = document.getElementById("note"),
+      cta = document.getElementById("cta");
+  var chosenUrg = 1;
+
+  function money(n) { return "$" + Math.round(n / 10) * 10; }
+  function fmt(n) { return n.toLocaleString("en-US"); }
+
+  function update() {
+    var s = cfg.services[+svc.value || 0];
+    var sqft = +size.value;
+    sizeout.textContent = fmt(sqft);
+    var mult = (cfg.urgency && cfg.urgency[chosenUrg]) ? cfg.urgency[chosenUrg].mult : 1;
+    var mid = (s.low + s.high) / 2 * (1 + (s.sizeFactor || 0) * (sqft - 1500) / 1500) * mult;
+    var low = Math.max(s.low * 0.9, mid * 0.85);
+    var high = Math.max(s.high * 0.9, mid * 1.15);
+    range.textContent = money(low) + " to " + money(high);
+  }
+
+  function build() {
+    svc.innerHTML = "";
+    cfg.services.forEach(function (s, i) {
+      var o = document.createElement("option");
+      o.value = i; o.textContent = s.name;
+      svc.appendChild(o);
+    });
+    urg.innerHTML = "";
+    (cfg.urgency || []).forEach(function (u, i) {
+      var b = document.createElement("button");
+      b.type = "button"; b.textContent = u.label;
+      b.setAttribute("aria-pressed", i === chosenUrg ? "true" : "false");
+      b.addEventListener("click", function () {
+        chosenUrg = i;
+        [].forEach.call(urg.children, function (c, j) { c.setAttribute("aria-pressed", j === i ? "true" : "false"); });
+        update();
+      });
+      urg.appendChild(b);
+    });
+    if (cfg.note) note.textContent = cfg.note;
+    if (cfg.ctaText) cta.textContent = cfg.ctaText;
+    if (cfg.phone) cta.href = "tel:" + cfg.phone;
+    update();
+  }
+
+  svc.addEventListener("change", update);
+  size.addEventListener("input", update);
+  build();
+
+  var q = new URLSearchParams(location.search);
+  if (q.get("config")) {
+    fetch(q.get("config")).then(function (r) { return r.json(); }).then(function (j) {
+      if (j && j.services) { cfg = j; chosenUrg = 1; build(); }
+    }).catch(function () {});
+  }
+  if (q.get("accent")) {
+    document.documentElement.style.setProperty("--app-accent", q.get("accent"));
+  }
+})();
+</script>
+</body>
+</html>
