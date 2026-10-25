@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Find us</title>
+<style>
+  :root { --app-accent:#1d4ed8; --app-ink:#0f172a; --app-muted:#64748b; --app-line:#e2e8f0; --app-bg:#ffffff; --app-soft:#f8fafc; }
+  * { box-sizing:border-box; }
+  body { font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--app-ink); margin:0; padding:20px; background:var(--app-bg); }
+  .map { width:100%; max-width:720px; height:260px; border:1px solid var(--app-line); border-radius:12px; }
+  .meta { max-width:720px; margin-top:14px; }
+  .nm { font-weight:800; font-size:17px; }
+  .ad { color:var(--app-muted); margin-top:2px; }
+  .acts { display:flex; gap:10px; margin-top:14px; flex-wrap:wrap; }
+  .btn { background:var(--app-accent); color:#fff; text-decoration:none; font-weight:700; font-size:14px; padding:11px 18px; border-radius:8px; }
+  .btn.alt { background:#fff; color:var(--app-accent); border:2px solid var(--app-accent); }
+</style>
+</head>
+<body>
+<iframe class="map" id="map" loading="lazy" title="Map" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<div class="meta">
+  <div class="nm" id="nm"></div>
+  <div class="ad" id="ad"></div>
+  <div class="ad" id="hs"></div>
+  <div class="acts">
+    <a class="btn" id="dir" target="_blank" rel="noopener">Directions</a>
+    <a class="btn alt" id="call" href="#">Call now</a>
+  </div>
+</div>
+<script type="application/json" id="app-config">
+{
+  "name": "Front Range Plumbing Co",
+  "query": "2219 Larimer St, Denver, CO 80205",
+  "phone": "+13035550114",
+  "hoursSummary": "Mon-Sat, 7am-6pm"
+}
+</script>
+<script>
+(function () {
+  var cfg = {};
+  try { cfg = JSON.parse(document.getElementById("app-config").textContent); } catch (e) {}
+  var q = cfg.query || "";
+  document.getElementById("nm").textContent = cfg.name || "";
+  document.getElementById("ad").textContent = q;
+  document.getElementById("hs").textContent = cfg.hoursSummary || "";
+  document.getElementById("map").src = "https://www.google.com/maps?q=" + encodeURIComponent(q) + "&output=embed";
+  document.getElementById("dir").href = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(q);
+  if (cfg.phone) document.getElementById("call").href = "tel:" + cfg.phone;
+})();
+</script>
+</body>
+</html>

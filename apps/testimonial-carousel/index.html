@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reviews carousel</title>
+<style>
+  :root { --app-accent:#1d4ed8; --app-ink:#0f172a; --app-muted:#64748b; --app-line:#e2e8f0; --app-bg:#ffffff; --app-soft:#f8fafc; }
+  * { box-sizing:border-box; }
+  body { font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--app-ink); margin:0; padding:20px; background:var(--app-bg); }
+  .stage { max-width:640px; background:var(--app-soft); border:1px solid var(--app-line); border-radius:12px; padding:22px; }
+  .stars { color:#f59e0b; letter-spacing:2px; font-size:18px; }
+  .quote { font-size:17px; margin:10px 0 12px; }
+  .who { color:var(--app-muted); font-size:13.5px; }
+  .bar { display:flex; align-items:center; gap:10px; margin-top:16px; }
+  .bar button { border:1px solid var(--app-line); background:#fff; border-radius:8px; width:34px; height:34px; cursor:pointer; font-size:16px; }
+  .dots { display:flex; gap:6px; }
+  .dots span { width:8px; height:8px; border-radius:50%; background:var(--app-line); cursor:pointer; }
+  .dots span.on { background:var(--app-accent); }
+  .avg { color:var(--app-muted); font-size:13px; margin-left:auto; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="stars" id="st"></div>
+  <p class="quote" id="q"></p>
+  <p class="who" id="w" style="margin:0"></p>
+  <div class="bar">
+    <button id="prev" aria-label="Previous review">\u2039</button>
+    <button id="next" aria-label="Next review">\u203a</button>
+    <div class="dots" id="dots"></div>
+    <span class="avg" id="avg"></span>
+  </div>
+</div>
+<script type="application/json" id="app-config">
+{
+  "average": "4.9 from 183+ Google reviews",
+  "seconds": 6,
+  "quotes": [
+    { "stars": 5, "quote": "Found the slab leak in an hour, quoted it flat, and the crew patched the drywall so well the painter asked who did it.", "who": "Dana W., Wash Park" },
+    { "stars": 5, "quote": "Water heater died at 6am, they had a new one in by noon. Texted me the quote before touching a wrench.", "who": "Marcus T., Sloan's Lake" },
+    { "stars": 5, "quote": "Two other companies wanted to dig up the patio. These folks ran a camera, found the offset, and spot-repaired it instead.", "who": "Priya S., Highland" }
+  ]
+}
+</script>
+<script>
+(function () {
+  var cfg = {};
+  try { cfg = JSON.parse(document.getElementById("app-config").textContent); } catch (e) {}
+  var qs = cfg.quotes || [];
+  var i = 0, timer = null;
+  var dots = document.getElementById("dots");
+  qs.forEach(function (_, k) {
+    var d = document.createElement("span");
+    d.addEventListener("click", function () { go(k); });
+    dots.appendChild(d);
+  });
+  document.getElementById("avg").textContent = cfg.average || "";
+  function go(k) {
+    i = (k + qs.length) % qs.length;
+    var r = qs[i];
+    document.getElementById("st").textContent = "\u2605\u2605\u2605\u2605\u2605".slice(0, Math.max(1, Math.min(5, r.stars || 5)));
+    document.getElementById("q").textContent = "\u201c" + r.quote + "\u201d";
+    document.getElementById("w").textContent = "\u2014 " + r.who;
+    [].forEach.call(dots.children, function (d, j) { d.className = j === i ? "on" : ""; });
+  }
+  function auto() {
+    if (timer) clearInterval(timer);
+    if ((cfg.seconds || 6) > 0 && qs.length > 1) timer = setInterval(function () { go(i + 1); }, (cfg.seconds || 6) * 1000);
+  }
+  document.getElementById("prev").addEventListener("click", function () { go(i - 1); auto(); });
+  document.getElementById("next").addEventListener("click", function () { go(i + 1); auto(); });
+  document.querySelector(".stage").addEventListener("mouseenter", function () { if (timer) clearInterval(timer); });
+  document.querySelector(".stage").addEventListener("mouseleave", auto);
+  go(0); auto();
+})();
+</script>
+</body>
+</html>

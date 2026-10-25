@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our team</title>
+<style>
+  :root { --app-accent:#1d4ed8; --app-ink:#0f172a; --app-muted:#64748b; --app-line:#e2e8f0; --app-bg:#ffffff; --app-soft:#f8fafc; }
+  * { box-sizing:border-box; }
+  body { font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--app-ink); margin:0; padding:20px; background:var(--app-bg); }
+  h2 { margin:0 0 4px; font-size:20px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:12px; margin-top:16px; }
+  .card { background:var(--app-soft); border:1px solid var(--app-line); border-radius:12px; padding:16px; text-align:center; }
+  .ava { width:64px; height:64px; border-radius:50%; margin:0 auto 10px; background:var(--app-accent); color:#fff; font:700 22px/64px system-ui,sans-serif; overflow:hidden; }
+  .ava img { width:100%; height:100%; object-fit:cover; display:block; }
+  .nm { font-weight:700; }
+  .rl { color:var(--app-accent); font-size:13px; font-weight:600; margin-top:2px; }
+  .ln { color:var(--app-muted); font-size:12.5px; margin-top:6px; }
+</style>
+</head>
+<body>
+<h2 id="t">Our team</h2>
+<div class="grid" id="grid"></div>
+<script type="application/json" id="app-config">
+{
+  "title": "Our team",
+  "people": [
+    { "name": "Maria G.", "role": "Master stylist", "photo": "", "line": "12 years behind the chair" },
+    { "name": "Devon P.", "role": "Barber", "photo": "", "line": "Fades and beard work" }
+  ]
+}
+</script>
+<script>
+(function () {
+  var cfg = {};
+  try { cfg = JSON.parse(document.getElementById("app-config").textContent); } catch (e) {}
+  document.getElementById("t").textContent = cfg.title || "Our team";
+  var grid = document.getElementById("grid");
+  (cfg.people || []).forEach(function (p) {
+    var c = document.createElement("div"); c.className = "card";
+    var a = document.createElement("div"); a.className = "ava";
+    if (p.photo) { var im = document.createElement("img"); im.src = p.photo; im.alt = p.name; a.appendChild(im); }
+    else { a.textContent = p.name.split(/\s+/).map(function (w) { return w[0] || ""; }).join("").slice(0, 2).toUpperCase(); }
+    var n = document.createElement("div"); n.className = "nm"; n.textContent = p.name;
+    var r = document.createElement("div"); r.className = "rl"; r.textContent = p.role || "";
+    c.appendChild(a); c.appendChild(n); c.appendChild(r);
+    if (p.line) { var l = document.createElement("div"); l.className = "ln"; l.textContent = p.line; c.appendChild(l); }
+    grid.appendChild(c);
+  });
+})();
+</script>
+</body>
+</html>

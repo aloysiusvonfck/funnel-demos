@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schedule</title>
+<style>
+  :root { --app-accent:#1d4ed8; --app-ink:#0f172a; --app-muted:#64748b; --app-line:#e2e8f0; --app-bg:#ffffff; --app-soft:#f8fafc; }
+  * { box-sizing:border-box; }
+  body { font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--app-ink); margin:0; padding:20px; background:var(--app-bg); }
+  h2 { margin:0 0 4px; font-size:20px; }
+  .hint { color:var(--app-muted); font-size:13px; margin:0 0 16px; }
+  .cols { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:12px; }
+  .day { background:var(--app-soft); border:1px solid var(--app-line); border-radius:12px; padding:14px; }
+  .day h3 { margin:0 0 10px; font-size:14px; text-transform:uppercase; letter-spacing:.07em; color:var(--app-accent); }
+  .ses { background:#fff; border:1px solid var(--app-line); border-radius:9px; padding:9px 11px; margin-bottom:8px; }
+  .ses:last-child { margin-bottom:0; }
+  .tm { font-weight:700; font-size:13px; }
+  .nm { margin-top:2px; }
+  .co { color:var(--app-muted); font-size:12.5px; margin-top:2px; }
+</style>
+</head>
+<body>
+<h2 id="t">This week's classes</h2>
+<p class="hint" id="note"></p>
+<div class="cols" id="cols"></div>
+<script type="application/json" id="app-config">
+{
+  "title": "This week's classes",
+  "note": "Drop-ins welcome. Bring water.",
+  "dayOrder": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+  "sessions": [
+    { "day": "Mon", "time": "6:00 AM", "name": "CrossFit", "coach": "Alex" },
+    { "day": "Mon", "time": "5:30 PM", "name": "Kettlebell strength", "coach": "Riley" },
+    { "day": "Tue", "time": "7:00 PM", "name": "Yin yoga", "coach": "Sam" },
+    { "day": "Sat", "time": "9:00 AM", "name": "Open gym", "coach": "" }
+  ]
+}
+</script>
+<script>
+(function () {
+  var cfg = {};
+  try { cfg = JSON.parse(document.getElementById("app-config").textContent); } catch (e) {}
+  document.getElementById("t").textContent = cfg.title || "Schedule";
+  document.getElementById("note").textContent = cfg.note || "";
+  var order = cfg.dayOrder || ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  var byDay = {};
+  (cfg.sessions || []).forEach(function (s) { (byDay[s.day] = byDay[s.day] || []).push(s); });
+  var cols = document.getElementById("cols");
+  order.forEach(function (d) {
+    var list = (byDay[d] || []).sort(function (a, b) { return a.time.localeCompare(b.time); });
+    if (!list.length) return;
+    var col = document.createElement("div"); col.className = "day";
+    var h = document.createElement("h3"); h.textContent = d;
+    col.appendChild(h);
+    list.forEach(function (s) {
+      var b = document.createElement("div"); b.className = "ses";
+      var t = document.createElement("div"); t.className = "tm"; t.textContent = s.time;
+      var n = document.createElement("div"); n.className = "nm"; n.textContent = s.name;
+      b.appendChild(t); b.appendChild(n);
+      if (s.coach) { var c = document.createElement("div"); c.className = "co"; c.textContent = "with " + s.coach; b.appendChild(c); }
+      col.appendChild(b);
+    });
+    cols.appendChild(col);
+  });
+  if (!cols.children.length) { var e = document.createElement("p"); e.className = "hint"; e.textContent = "Add sessions to the app config to show the schedule."; cols.replaceWith(e); }
+})();
+</script>
+</body>
+</html>

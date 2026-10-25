@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Special offer</title>
+<style>
+  :root { --app-accent:#1d4ed8; --app-ink:#0f172a; --app-muted:#64748b; --app-line:#e2e8f0; --app-bg:#ffffff; --app-soft:#f8fafc; }
+  * { box-sizing:border-box; }
+  body { font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; margin:0; padding:0; background:var(--app-bg); }
+  .bar { display:flex; align-items:center; gap:12px; flex-wrap:wrap; background:var(--app-accent); color:#fff; padding:12px 18px; border-radius:10px; }
+  .bar b { font-size:15px; }
+  .end { font:600 12px/1 system-ui,sans-serif; background:rgba(255,255,255,.18); padding:6px 10px; border-radius:999px; }
+  .cta { margin-left:auto; background:#fff; color:var(--app-accent); text-decoration:none; font-weight:700; font-size:13.5px; padding:9px 14px; border-radius:8px; }
+</style>
+</head>
+<body>
+<div class="bar">
+  <b id="txt"></b>
+  <span class="end" id="end" hidden></span>
+  <a class="cta" id="cta" href="#"></a>
+</div>
+<script type="application/json" id="app-config">
+{
+  "text": "Free inspection with any repair this month",
+  "expires": "2026-11-30T23:59:00",
+  "ctaLabel": "Claim it",
+  "ctaHref": "tel:+13035550114"
+}
+</script>
+<script>
+(function () {
+  var cfg = {};
+  try { cfg = JSON.parse(document.getElementById("app-config").textContent); } catch (e) {}
+  document.getElementById("txt").textContent = cfg.text || "";
+  var cta = document.getElementById("cta");
+  cta.textContent = cfg.ctaLabel || "Claim it";
+  if (cfg.ctaHref) cta.href = cfg.ctaHref;
+  var end = document.getElementById("end"), exp = cfg.expires ? new Date(cfg.expires) : null;
+  function tick() {
+    if (!exp || isNaN(exp)) { end.hidden = true; return; }
+    var left = exp - new Date();
+    if (left <= 0) { end.textContent = "Offer ended"; return; }
+    var d = Math.floor(left / 864e5), h = Math.floor(left % 864e5 / 36e5), m = Math.floor(left % 36e5 / 6e4);
+    end.textContent = "Ends in " + (d ? d + "d " : "") + (h ? h + "h " : "") + m + "m";
+  }
+  tick(); setInterval(tick, 30000);
+})();
+</script>
+</body>
+</html>
