@@ -12,9 +12,10 @@
 <link rel="stylesheet" href="design/mbc-kit.css">
 <style>
   body { margin: 0; }
-  .hero { min-height: 74vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 32px 56px; }
+  .hero { position: relative; min-height: 82vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 32px 64px; overflow: hidden; }
+  .hero > *:not(.mbc-hero-art) { position: relative; z-index: 1; }
   .hero .rule { width: 40%; }
-  .hero p.body { max-width: 620px; }
+  .hero .ctas { margin-top: 26px; }
   .lanes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 32px; }
   .lane { display: flex; flex-direction: column; gap: 10px; padding: 20px; min-height: 172px; }
   .lane h3 { margin: 0; }
@@ -24,17 +25,17 @@
   .lane .soon { font: 400 12px var(--mbc-font-mono); text-transform: uppercase; letter-spacing: var(--mbc-mono-tracking); color: var(--mbc-text-50); }
   .pricing { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 32px; }
   .price-card { padding: 26px; }
-  .price { font: 600 clamp(30px, 3vw, 44px)/1 var(--mbc-font-sans); color: var(--mbc-text); letter-spacing: -.02em; margin: 10px 0 12px; }
+  .price { font: 500 clamp(30px, 3vw, 44px)/1 var(--mbc-font-sans); color: var(--mbc-text); letter-spacing: -.04em; margin: 10px 0 12px; }
   .price small { font: 400 12px var(--mbc-font-mono); text-transform: uppercase; letter-spacing: var(--mbc-mono-tracking); color: var(--mbc-text-50); display: block; margin-top: 10px; }
   .price-card p { margin: 0; }
   footer { padding: 48px 32px 64px; border-top: 1px solid var(--mbc-border-12); }
-  @media (max-width: 900px) { .lanes, .pricing { grid-template-columns: 1fr; } }
+  @media (max-width: 900px) { .lanes, .pricing { grid-template-columns: 1fr; } .hero { min-height: 70vh; } }
 </style>
 </head>
 <body class="mbc-page">
 
 <nav class="mbc-nav">
-  <a href="#top" class="logo"><span class="mbc-display-sm" style="font-size:16px">THE MBC GROUP</span></a>
+  <a href="#top" class="logo"><img src="https://mbcgroup.ai/assets/mbc-logo.png" alt="The MBC Group"></a>
   <span class="divider"></span>
   <div class="links">
     <a class="mbc-link" href="#lanes">Gallery</a>
@@ -45,11 +46,12 @@
 </nav>
 
 <header class="hero" id="top">
+  <div class="mbc-hero-art" aria-hidden="true"></div>
   <hr class="mbc-rule rule">
   <p class="mbc-mono-label">[ Denver, CO ] + [ 2026 ]</p>
-  <h1 class="mbc-display">Websites for every trade, shipped in 48 hours</h1>
-  <p class="mbc-body body">Every lane in the $350 funnel, built live on real templates. Pick a lane, preview the demo, and launch inside two days. Flat pricing, a human quality gate on every build, and a care plan that keeps the site alive.</p>
-  <p><a class="mbc-btn-accent mbc-btn" href="#lanes">Browse the gallery</a></p>
+  <h1 class="mbc-hero-display">Websites for every trade. Shipped in 48 hours.</h1>
+  <p class="mbc-hero-body">Every lane in the $350 funnel, built live on real templates. Pick a lane, preview the demo, and launch inside two days. A human signs off before anything ships.</p>
+  <p class="ctas"><a class="mbc-btn-white" href="#lanes">Browse the gallery <span class="chip">→</span></a></p>
 </header>
 
 <section class="mbc-section" id="lanes">

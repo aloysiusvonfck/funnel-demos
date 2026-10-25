@@ -1,9 +1,22 @@
-/* MBC component kit v1
-   Consumes design/tokens.css. Matches mbcgroup.ai's live components:
-   floating pill nav, mono labels, outline pill buttons, dark cards,
-   blinking status dot, numbered sections, fading hairlines. */
+/* MBC component kit v2
+   Consumes design/tokens.css. Matches mbcgroup.ai's live site as captured
+   Oct 25, 2026. Hero verified against their rendered page: sentence-case
+   headline at weight 500, cyan serif logo asset, white pill CTA, dot-matrix
+   hero art. Section/index language from their stylesheet extraction. */
 
 /* ---- Type primitives ---- */
+
+.mbc-hero-display {
+  font-family: var(--mbc-font-sans);
+  font-weight: 500;
+  font-size: clamp(44px, 5.6vw, 92px);
+  line-height: 1.02;
+  letter-spacing: -.055em;
+  text-transform: none;
+  text-wrap: balance;
+  color: var(--mbc-text);
+  margin: 0;
+}
 
 .mbc-display {
   font-family: var(--mbc-font-sans);
@@ -30,6 +43,13 @@
   font: 400 15px/1.5 var(--mbc-font-sans);
   letter-spacing: var(--mbc-body-tracking);
   color: var(--mbc-text-88);
+}
+
+.mbc-hero-body {
+  font: 400 clamp(17px, 1.5vw, 22px)/1.4 var(--mbc-font-sans);
+  letter-spacing: var(--mbc-body-tracking);
+  color: var(--mbc-text-75);
+  max-width: 520px;
 }
 
 .mbc-body-muted {
@@ -75,7 +95,7 @@
 }
 .mbc-link-accent:hover { color: var(--mbc-accent-pale); }
 
-/* ---- Outline pill button (their primary CTA shape) ---- */
+/* ---- Outline pill button (nav CTA) ---- */
 
 .mbc-btn {
   display: inline-flex;
@@ -106,7 +126,35 @@
 }
 .mbc-btn-accent:hover { background: var(--mbc-accent-pale); }
 
-/* ---- Floating pill nav (their header, Oct 3 consolidated style) ---- */
+/* White pill CTA (their hero primary: white fill, dark sans text, arrow chip) */
+.mbc-btn-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 8px 8px 22px;
+  border-radius: var(--mbc-radius-pill);
+  background: var(--mbc-text);
+  border: 0;
+  color: #05060f;
+  font: 500 17px var(--mbc-font-sans);
+  letter-spacing: -.01em;
+  white-space: nowrap;
+  cursor: pointer;
+  text-decoration: none;
+}
+.mbc-btn-white:hover { background: var(--mbc-accent-pale); }
+.mbc-btn-white .chip {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: #05060f;
+  color: var(--mbc-text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+/* ---- Floating pill nav ---- */
 
 .mbc-nav {
   position: sticky;
@@ -124,7 +172,8 @@
   border: 1px solid var(--mbc-border-12);
   box-shadow: var(--mbc-shadow-nav);
 }
-.mbc-nav .logo { height: 24px; width: auto; display: block; flex: 0 0 auto; }
+.mbc-nav .logo { display: block; flex: 0 0 auto; }
+.mbc-nav .logo img { height: clamp(24px, 2.4vw, 34px); width: auto; display: block; }
 .mbc-nav .divider {
   width: 1px; height: 18px;
   background: var(--mbc-border-14);
@@ -132,7 +181,7 @@
 }
 .mbc-nav .links { display: flex; gap: clamp(12px, 1.5vw, 22px); margin-right: auto; }
 
-/* ---- Blinking status dot (live indicators, Echo OS style) ---- */
+/* ---- Blinking status dot ---- */
 
 .mbc-dot::before {
   content: "";
@@ -146,6 +195,36 @@
   animation: mbc-blink 2s ease-in-out infinite;
 }
 @keyframes mbc-blink { 50% { opacity: .35; } }
+
+/* ---- Dot-matrix hero art (their halftone field, CSS-built) ---- */
+
+.mbc-hero-art {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  background:
+    radial-gradient(1200px 800px at 70% 20%, rgba(59, 63, 216, .32), transparent 62%),
+    radial-gradient(900px 700px at 85% 80%, rgba(59, 63, 216, .2), transparent 60%);
+}
+.mbc-hero-art::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(190, 194, 255, .85) 1px, transparent 1.4px);
+  background-size: 9px 9px;
+  -webkit-mask-image: radial-gradient(950px 720px at 72% 32%, #000 0%, rgba(0, 0, 0, .5) 45%, transparent 74%);
+  mask-image: radial-gradient(950px 720px at 72% 32%, #000 0%, rgba(0, 0, 0, .5) 45%, transparent 74%);
+}
+.mbc-hero-art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(59, 63, 216, .9) 1.2px, transparent 1.6px);
+  background-size: 12px 12px;
+  -webkit-mask-image: radial-gradient(720px 620px at 38% 72%, #000 0%, transparent 70%);
+  mask-image: radial-gradient(720px 620px at 38% 72%, #000 0%, transparent 70%);
+}
 
 /* ---- Cards and panels ---- */
 
@@ -184,9 +263,9 @@
 }
 .mbc-tile > * { position: relative; }
 
-/* ---- Numbered sections ([ 01 ] + [ YEAR ] pattern) ---- */
+/* ---- Numbered sections ---- */
 
-.mbc-section { padding: 96px 32px; max-width: 1200px; }
+.mbc-section { padding: 96px 32px; max-width: 1200px; position: relative; z-index: 1; }
 .mbc-section-head {
   display: flex;
   align-items: baseline;
@@ -201,7 +280,7 @@
   color: var(--mbc-text-50);
 }
 
-/* ---- Thin hairline that fades out partway across the page ---- */
+/* ---- Fading hairline ---- */
 
 .mbc-rule {
   height: 1px;
@@ -210,7 +289,7 @@
   background: linear-gradient(90deg, var(--mbc-accent) 0%, var(--mbc-border-12) 30%, transparent 70%);
 }
 
-/* ---- Numbered index list (services, gallery cards) ---- */
+/* ---- Numbered index lists ---- */
 
 .mbc-index { list-style: none; margin: 0; padding: 0; }
 .mbc-index li {
