@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hours</title>
+<style>
+  :root { --app-accent:#1d4ed8; --app-ink:#0f172a; --app-muted:#64748b; --app-line:#e2e8f0; --app-bg:#ffffff; --app-soft:#f8fafc; }
+  * { box-sizing:border-box; }
+  body { font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--app-ink); margin:0; padding:20px; background:var(--app-bg); }
+  .badge { display:inline-block; font:700 14px/1 system-ui,sans-serif; color:#fff; padding:9px 14px; border-radius:999px; }
+  .open { background:#16a34a; } .shut { background:#64748b; }
+  .note { color:var(--app-muted); font-size:13px; margin-left:8px; }
+  .week { margin-top:16px; max-width:360px; }
+  .row { display:flex; justify-content:space-between; padding:7px 10px; border-radius:8px; font-size:14.5px; }
+  .row.today { background:var(--app-soft); font-weight:700; border-left:3px solid var(--app-accent); }
+  .row span:last-child { color:var(--app-muted); }
+  .row.today span:last-child { color:var(--app-ink); }
+  .btn { display:inline-block; margin-top:16px; background:var(--app-accent); color:#fff; text-decoration:none; font-weight:700; padding:12px 20px; border-radius:8px; font-size:15px; }
+</style>
+</head>
+<body>
+<span class="badge shut" id="badge">Hours</span><span class="note" id="note"></span>
+<div class="week" id="week"></div>
+<a class="btn" id="call" href="#">Call now</a>
+<script type="application/json" id="app-config">
+{
+  "tz": "America/Denver",
+  "hours": {
+    "Mon": ["7:00 AM", "6:00 PM"],
+    "Tue": ["7:00 AM", "6:00 PM"],
+    "Wed": ["7:00 AM", "6:00 PM"],
+    "Thu": ["7:00 AM", "6:00 PM"],
+    "Fri": ["7:00 AM", "6:00 PM"],
+    "Sat": ["8:00 AM", "2:00 PM"],
+    "Sun": null
+  },
+  "note": "24/7 emergency line",
+  "phone": "+13035550114"
+}
+</script>
+<script>
+(function () {
+  var cfg = {};
+  try { cfg = JSON.parse(document.getElementById("app-config").textContent); } catch (e) {}
+  var ORDER = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  function toMin(s) {
+    var m = /(\d{1,2}):(\d{2})\s*(AM|PM)?/i.exec(String(s));
+    if (!m) return null;
+    var h = +m[1] % 24, ap = m[3];
+    if (ap) {
+      ap = ap.toUpperCase();
+      if (ap === "PM" && h !== 12) h += 12;
+      if (ap === "AM" && h === 12) h = 0;
+    }
+    return h * 60 + (+m[2]);
+  }
+  var badge = document.getElementById("badge");
+  if (cfg.phone) document.getElementById("call").href = "tel:" + cfg.phone;
+  var parts = {};
+  try {
+    new Intl.DateTimeFormat("en-US", { timeZone: cfg.tz || "America/Denver", weekday: "short", hour: "2-digit", minute: "2-digit", hour12: false })
+      .formatToParts(new Date()).forEach(function (p) { parts[p.type] = p.value; });
+  } catch (e) {}
+  var wd = parts.weekday || "";
+  var mins = ((+parts.hour || 0) % 24) * 60 + (+parts.minute || 0);
+  var todayHours = (cfg.hours || {})[wd];
+  var isOpen = false;
+  if (Array.isArray(todayHours)) {
+    var o = toMin(todayHours[0]), c = toMin(todayHours[1]);
+    if (o !== null && c !== null) isOpen = mins >= o && mins < c;
+  }
+  badge.textContent = isOpen ? "Open now" : "Closed";
+  badge.className = "badge " + (isOpen ? "open" : "shut");
+  document.getElementById("note").textContent = cfg.note || "";
+  var week = document.getElementById("week");
+  ORDER.forEach(function (d) {
+    var h = (cfg.hours || {})[d];
+    var row = document.createElement("div");
+    row.className = "row" + (d === wd ? " today" : "");
+    var a = document.createElement("span"); a.textContent = d;
+    var b = document.createElement("span");
+    b.textContent = Array.isArray(h) ? h[0] + " - " + h[1] : "Closed";
+    row.appendChild(a); row.appendChild(b);
+    week.appendChild(row);
+  });
+})();
+</script>
+</body>
+</html>

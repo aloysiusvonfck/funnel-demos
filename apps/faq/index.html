@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAQ</title>
+<style>
+  :root { --app-accent:#1d4ed8; --app-ink:#0f172a; --app-muted:#64748b; --app-line:#e2e8f0; --app-bg:#ffffff; --app-soft:#f8fafc; }
+  * { box-sizing:border-box; }
+  body { font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--app-ink); margin:0; padding:20px; background:var(--app-bg); max-width:720px; }
+  details { border:1px solid var(--app-line); border-radius:10px; background:var(--app-soft); padding:0 16px; margin-bottom:10px; }
+  summary { font-weight:700; padding:14px 0; cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; }
+  summary::-webkit-details-marker { display:none; }
+  summary::after { content:"+"; color:var(--app-accent); font-size:20px; font-weight:700; }
+  details[open] summary::after { content:"\2212"; }
+  details p { margin:0 0 14px; color:var(--app-muted); }
+</style>
+</head>
+<body>
+<div id="faq"></div>
+<script type="application/json" id="app-config">
+{
+  "items": [
+    { "q": "Do you give free estimates?", "a": "Yes. Every quote is flat, written, and the price you pay before work starts." },
+    { "q": "How fast can you come out?", "a": "Same day for most Denver calls, and the emergency line runs around the clock." }
+  ]
+}
+</script>
+<script>
+(function () {
+  var cfg = {};
+  try { cfg = JSON.parse(document.getElementById("app-config").textContent); } catch (e) {}
+  var box = document.getElementById("faq");
+  (cfg.items || []).forEach(function (it) {
+    var d = document.createElement("details");
+    var s = document.createElement("summary"); s.textContent = it.q;
+    var p = document.createElement("p"); p.textContent = it.a;
+    d.appendChild(s); d.appendChild(p);
+    box.appendChild(d);
+  });
+})();
+</script>
+</body>
+</html>

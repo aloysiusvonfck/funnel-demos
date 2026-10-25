@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book an appointment</title>
+<style>
+  :root { --app-accent:#1d4ed8; --app-ink:#0f172a; --app-muted:#64748b; --app-line:#e2e8f0; --app-bg:#ffffff; --app-soft:#f8fafc; }
+  * { box-sizing:border-box; }
+  body { font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--app-ink); margin:0; padding:20px; background:var(--app-bg); }
+  h2 { margin:0 0 4px; font-size:20px; }
+  .hint { margin:0 0 14px; color:var(--app-muted); font-size:13px; }
+  label { display:block; font-weight:600; margin:14px 0 5px; font-size:14px; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; }
+  .chips button { padding:9px 12px; border:1px solid var(--app-line); border-radius:8px; background:#fff; font:600 13px system-ui,sans-serif; cursor:pointer; color:var(--app-ink); }
+  .chips button[aria-pressed="true"] { background:var(--app-accent); color:#fff; border-color:var(--app-accent); }
+  input, textarea { width:100%; padding:10px; border:1px solid var(--app-line); border-radius:8px; font:inherit; }
+  .cta { margin-top:16px; width:100%; background:var(--app-accent); color:#fff; border:0; border-radius:8px; padding:13px; font-weight:700; font-size:15px; cursor:pointer; }
+  .done { display:none; background:var(--app-soft); border:1px solid var(--app-line); border-radius:10px; padding:16px; margin-top:14px; }
+  .done b { display:block; margin-bottom:6px; }
+  .sum { color:var(--app-muted); font-size:13px; white-space:pre-wrap; }
+</style>
+</head>
+<body>
+<div id="wrap">
+<h2 id="t">Book an appointment</h2>
+<p class="hint" id="note"></p>
+<label>Pick a day</label>
+<div class="chips" id="days"></div>
+<label>Pick a time</label>
+<div class="chips" id="slots"></div>
+<label>Your name<input id="name"></label>
+<label>Phone<input id="phone" type="tel"></label>
+<label>Anything we should know?<textarea id="notes" rows="3"></textarea></label>
+<button class="cta" id="go">Request this time</button>
+</div>
+<div class="done" id="done"><b id="dt"></b><div class="sum" id="ds"></div></div>
+<script type="application/json" id="app-config">
+{
+  "title": "Book an appointment",
+  "note": "Pick a day and time. We confirm by text or call.",
+  "slotDays": 14,
+  "closedDays": [0],
+  "slots": ["9:00 AM", "11:00 AM", "1:00 PM", "3:00 PM"],
+  "endpoint": "",
+  "email": ""
+}
+</script>
+<script>
+(function () {
+  var cfg = {};
+  try { cfg = JSON.parse(document.getElementById("app-config").textContent); } catch (e) {}
+  document.getElementById("t").textContent = cfg.title || "Book an appointment";
+  document.getElementById("note").textContent = cfg.note || "";
+  var day = null, slot = null;
+  var daysEl = document.getElementById("days"), slotsEl = document.getElementById("slots");
+  function pick(box, btn) {
+    return function () {
+      [].forEach.call(box.children, function (c) { c.setAttribute("aria-pressed", "false"); });
+      btn.setAttribute("aria-pressed", "true");
+      if (box === daysEl) day = btn.dataset.value; else slot = btn.textContent;
+    };
+  }
+  var closed = cfg.closedDays || [0];
+  var today = new Date();
+  var made = 0;
+  for (var i = 1; i <= (cfg.slotDays || 14) && made < 10; i++) {
+    var x = new Date(today.getTime() + i * 864e5);
+    if (closed.indexOf(x.getDay()) >= 0) continue;
+    var b = document.createElement("button");
+    b.type = "button";
+    b.textContent = x.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+    b.dataset.value = x.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
+    b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", pick(daysEl, b));
+    daysEl.appendChild(b);
+    made++;
+  }
+  (cfg.slots || []).forEach(function (s) {
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = s;
+    b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", pick(slotsEl, b));
+    slotsEl.appendChild(b);
+  });
+  document.getElementById("go").addEventListener("click", function () {
+    var name = document.getElementById("name").value.trim();
+    var phone = document.getElementById("phone").value.trim();
+    var notes = document.getElementById("notes").value.trim();
+    if (!day || !slot) { window.alert("Pick a day and a time first."); return; }
+    if (!name || !phone) { window.alert("Add your name and phone."); return; }
+    var summary = day + " at " + slot + "\n" + name + " \u00b7 " + phone + (notes ? "\n" + notes : "");
+    var payload = { kind: "booking-request", name: name, phone: phone, notes: notes, requested_day: day, requested_time: slot };
+    function show(title, text) {
+      document.getElementById("wrap").style.display = "none";
+      document.getElementById("dt").textContent = title;
+      document.getElementById("ds").textContent = text;
+      document.getElementById("done").style.display = "block";
+    }
+    function fallback() {
+      if (cfg.email) location.href = "mailto:" + cfg.email + "?subject=" + encodeURIComponent("Booking request") + "&body=" + encodeURIComponent(summary);
+      show("Almost there.", "Copy this and text or call it in:\n\n" + summary);
+    }
+    if (cfg.endpoint) {
+      fetch(cfg.endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+        .then(function (r) { if (!r.ok) throw new Error("bad status"); })
+        .then(function () { show("Time requested.", "We confirm your slot shortly. If plans change, call us."); })
+        .catch(fallback);
+    } else { fallback(); }
+  });
+})();
+</script>
+</body>
+</html>

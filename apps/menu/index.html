@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Menu</title>
+<style>
+  :root { --app-accent:#1d4ed8; --app-ink:#0f172a; --app-muted:#64748b; --app-line:#e2e8f0; --app-bg:#ffffff; --app-soft:#f8fafc; }
+  * { box-sizing:border-box; }
+  body { font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--app-ink); margin:0; padding:20px; background:var(--app-bg); max-width:860px; }
+  h2 { margin:0 0 4px; font-size:22px; }
+  .hint { color:var(--app-muted); font-size:13px; margin:0 0 18px; }
+  h3 { font-size:15px; text-transform:uppercase; letter-spacing:.08em; color:var(--app-accent); margin:22px 0 10px; }
+  .item { display:flex; justify-content:space-between; gap:14px; padding:10px 0; border-bottom:1px solid var(--app-line); }
+  .item:last-child { border-bottom:0; }
+  .name { font-weight:700; }
+  .price { font-weight:700; white-space:nowrap; }
+  .desc { color:var(--app-muted); font-size:13.5px; margin-top:2px; }
+  .tag { display:inline-block; font:600 10.5px/1 system-ui,sans-serif; color:var(--app-accent); border:1px solid var(--app-line); border-radius:999px; padding:3px 8px; margin-right:4px; vertical-align:1px; }
+  .cat { break-inside:avoid; }
+  .grid { column-count:2; column-gap:36px; }
+  @media (max-width:700px) { .grid { column-count:1; } }
+</style>
+</head>
+<body>
+<h2 id="t">Menu</h2>
+<p class="hint" id="note"></p>
+<div class="grid" id="menu"></div>
+<script type="application/json" id="app-config">
+{
+  "title": "Menu",
+  "note": "Ask about today's specials.",
+  "categories": [
+    { "name": "Starters", "items": [
+      { "name": "Green chili", "desc": "Pork, roasted Hatch chiles, flour tortillas", "price": "9", "tags": ["sp"] },
+      { "name": "Chips and guac", "desc": "Made to order", "price": "8", "tags": ["v", "gf"] }
+    ] },
+    { "name": "Mains", "items": [
+      { "name": "Carne asada plate", "desc": "Charred steak, rice, beans, salsa trio", "price": "16" },
+      { "name": "Veggie burrito", "desc": "Grilled vegetables, black beans, avocado", "price": "12", "tags": ["v"] }
+    ] }
+  ]
+}
+</script>
+<script>
+(function () {
+  var cfg = {};
+  try { cfg = JSON.parse(document.getElementById("app-config").textContent); } catch (e) {}
+  var TAGS = { gf: "Gluten-free", v: "Veg", vg: "Vegan", sp: "Spicy" };
+  document.getElementById("t").textContent = cfg.title || "Menu";
+  document.getElementById("note").textContent = cfg.note || "";
+  var box = document.getElementById("menu");
+  (cfg.categories || []).forEach(function (cat) {
+    var sec = document.createElement("div"); sec.className = "cat";
+    var h = document.createElement("h3"); h.textContent = cat.name;
+    sec.appendChild(h);
+    (cat.items || []).forEach(function (it) {
+      var row = document.createElement("div"); row.className = "item";
+      var left = document.createElement("div");
+      var nm = document.createElement("div"); nm.className = "name"; nm.textContent = it.name;
+      left.appendChild(nm);
+      if (it.desc) { var de = document.createElement("div"); de.className = "desc"; de.textContent = it.desc; left.appendChild(de); }
+      if (it.tags && it.tags.length) {
+        var tw = document.createElement("div"); tw.style.marginTop = "4px";
+        it.tags.forEach(function (t) {
+          var s = document.createElement("span"); s.className = "tag"; s.textContent = TAGS[t] || t;
+          tw.appendChild(s);
+        });
+        left.appendChild(tw);
+      }
+      var pr = document.createElement("div"); pr.className = "price";
+      pr.textContent = /^\d/.test(String(it.price)) ? "$" + it.price : it.price;
+      row.appendChild(left); row.appendChild(pr);
+      sec.appendChild(row);
+    });
+    box.appendChild(sec);
+  });
+})();
+</script>
+</body>
+</html>

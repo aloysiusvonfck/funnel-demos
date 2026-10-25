@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Before and after</title>
+<style>
+  :root { --app-accent:#1d4ed8; --app-ink:#0f172a; --app-muted:#64748b; --app-line:#e2e8f0; --app-bg:#ffffff; --app-soft:#f8fafc; }
+  * { box-sizing:border-box; }
+  body { font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--app-ink); margin:0; padding:20px; background:var(--app-bg); }
+  .ba { position:relative; max-width:720px; overflow:hidden; border-radius:12px; border:1px solid var(--app-line); touch-action:none; cursor:ew-resize; user-select:none; }
+  .ba img { display:block; width:100%; pointer-events:none; }
+  .ba .clip { position:absolute; inset:0; width:50%; overflow:hidden; border-right:3px solid #fff; }
+  .ba .clip img { position:absolute; top:0; left:0; }
+  .handle { position:absolute; top:0; bottom:0; left:50%; width:3px; margin-left:-1.5px; background:#fff; }
+  .handle::after { content:"\2194"; position:absolute; top:50%; left:50%; width:38px; height:38px; border-radius:50%; background:#fff; color:var(--app-ink); font:700 15px/38px system-ui,sans-serif; text-align:center; box-shadow:0 1px 6px rgba(15,23,42,.35); transform:translate(-50%,-50%); }
+  .tag { position:absolute; bottom:10px; font:600 12px/1 system-ui,sans-serif; background:rgba(15,23,42,.78); color:#fff; padding:6px 10px; border-radius:999px; }
+  .tag.b { left:10px; } .tag.a { right:10px; }
+  .hint { color:var(--app-muted); font-size:13px; max-width:720px; margin-top:10px; }
+</style>
+</head>
+<body>
+<div class="ba" id="ba">
+  <img id="afterImg" alt="After">
+  <div class="clip" id="clip"><img id="beforeImg" alt="Before"></div>
+  <div class="handle" id="handle"></div>
+  <span class="tag b" id="tagB">Before</span>
+  <span class="tag a" id="tagA">After</span>
+</div>
+<p class="hint" id="hint">Drag the handle to compare.</p>
+<script type="application/json" id="app-config">
+{
+  "before": "",
+  "after": "",
+  "beforeLabel": "Before",
+  "afterLabel": "After",
+  "hint": "Drag the handle to compare."
+}
+</script>
+<script>
+(function () {
+  var cfg = {};
+  try { cfg = JSON.parse(document.getElementById("app-config").textContent); } catch (e) {}
+  var ba = document.getElementById("ba"), clip = document.getElementById("clip"),
+      bi = document.getElementById("beforeImg"), ai = document.getElementById("afterImg"),
+      handle = document.getElementById("handle"), hint = document.getElementById("hint");
+  if (cfg.before) bi.src = cfg.before;
+  if (cfg.after) ai.src = cfg.after;
+  document.getElementById("tagB").textContent = cfg.beforeLabel || "Before";
+  document.getElementById("tagA").textContent = cfg.afterLabel || "After";
+  if (cfg.hint) hint.textContent = cfg.hint;
+  if (!cfg.before || !cfg.after) {
+    ba.style.display = "none";
+    hint.textContent = "Add before and after image URLs to this app's config to show the comparison.";
+    return;
+  }
+  function size() { bi.style.width = ba.clientWidth + "px"; }
+  function set(pct) { pct = Math.max(2, Math.min(98, pct)); clip.style.width = pct + "%"; handle.style.left = pct + "%"; }
+  function fromEvent(e) { var r = ba.getBoundingClientRect(); set((e.clientX - r.left) / r.width * 100); }
+  ba.addEventListener("pointerdown", function (e) { ba.setPointerCapture(e.pointerId); fromEvent(e); });
+  ba.addEventListener("pointermove", function (e) { if (e.buttons) fromEvent(e); });
+  window.addEventListener("resize", size);
+  size();
+  set(50);
+})();
+</script>
+</body>
+</html>

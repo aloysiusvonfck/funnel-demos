@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monthly payment estimator</title>
+<style>
+  :root { --app-accent:#1d4ed8; --app-ink:#0f172a; --app-muted:#64748b; --app-line:#e2e8f0; --app-bg:#ffffff; --app-soft:#f8fafc; }
+  * { box-sizing:border-box; }
+  body { font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--app-ink); margin:0; padding:20px; background:var(--app-bg); }
+  h2 { margin:0 0 4px; font-size:20px; }
+  .hint { margin:0 0 14px; color:var(--app-muted); font-size:13px; }
+  label { display:block; font-weight:600; margin:14px 0 5px; font-size:14px; }
+  input[type=range] { width:100%; accent-color:var(--app-accent); }
+  select, input[type=number] { padding:9px; border:1px solid var(--app-line); border-radius:8px; font:inherit; background:#fff; }
+  .quote { margin-top:18px; padding:16px; border:1px solid var(--app-line); border-radius:10px; background:var(--app-soft); }
+  .monthly { font-size:30px; font-weight:800; letter-spacing:-.02em; }
+  .sub { color:var(--app-muted); font-size:12.5px; margin-top:4px; }
+  .cta { display:inline-block; margin-top:14px; background:var(--app-accent); color:#fff; text-decoration:none; font-weight:700; padding:12px 20px; border-radius:8px; font-size:15px; }
+</style>
+</head>
+<body>
+<h2 id="t">Monthly payment estimator</h2>
+<p class="hint" id="hint">See what a project looks like as an easy monthly payment.</p>
+<label id="pl">Project price: <output id="po"></output></label>
+<input id="price" type="range">
+<label>Down payment: <output id="do"></output></label>
+<input id="down" type="range" min="0" max="50" step="5" value="10">
+<label>Term</label>
+<select id="term"></select>
+<label>APR %</label>
+<input id="apr" type="number" step="0.1" min="0" max="36">
+<div class="quote">
+  <div class="monthly" id="m">$—</div>
+  <div class="sub" id="tt"></div>
+  <div class="sub" id="note"></div>
+</div>
+<a class="cta" id="cta" href="#">Ask about financing</a>
+<script type="application/json" id="app-config">
+{
+  "title": "Monthly payment estimator",
+  "priceLabel": "Project price",
+  "price": 8500, "priceMin": 500, "priceMax": 50000, "priceStep": 100,
+  "terms": [24, 36, 48, 60],
+  "apr": 9.9,
+  "ctaText": "Ask about financing",
+  "phone": "+13035550114",
+  "note": "Estimate only. Final financing is subject to approval."
+}
+</script>
+<script>
+(function () {
+  var cfg = {};
+  try { cfg = JSON.parse(document.getElementById("app-config").textContent); } catch (e) {}
+  var price = document.getElementById("price"), po = document.getElementById("po"),
+      down = document.getElementById("down"), doo = document.getElementById("do"),
+      term = document.getElementById("term"), apr = document.getElementById("apr"),
+      m = document.getElementById("m"), tt = document.getElementById("tt");
+  document.getElementById("t").textContent = cfg.title || "Monthly payment estimator";
+  document.getElementById("pl").firstChild.textContent = (cfg.priceLabel || "Project price") + ": ";
+  price.min = cfg.priceMin || 500; price.max = cfg.priceMax || 50000; price.step = cfg.priceStep || 100; price.value = cfg.price || 8500;
+  (cfg.terms || [24, 36, 48, 60]).forEach(function (t) {
+    var o = document.createElement("option"); o.value = t; o.textContent = t + " months"; term.appendChild(o);
+  });
+  apr.value = cfg.apr || 9.9;
+  if (cfg.note) document.getElementById("note").textContent = cfg.note;
+  var cta = document.getElementById("cta");
+  cta.textContent = cfg.ctaText || "Ask about financing";
+  if (cfg.phone) cta.href = "tel:" + cfg.phone;
+  function money(n) { return "$" + Math.round(n).toLocaleString("en-US"); }
+  function update() {
+    var p = +price.value, d = +down.value, n = +term.value || 48, r = (+apr.value || 0) / 100 / 12;
+    po.textContent = money(p); doo.textContent = d + "%";
+    var loan = p * (1 - d / 100);
+    var pay = r > 0 ? loan * r / (1 - Math.pow(1 + r, -n)) : loan / n;
+    m.textContent = money(pay) + "/mo";
+    tt.textContent = money(pay * n) + " total over " + n + " months after " + money(p * d / 100) + " down";
+  }
+  [price, down, term, apr].forEach(function (el) { el.addEventListener("input", update); el.addEventListener("change", update); });
+  update();
+})();
+</script>
+</body>
+</html>
