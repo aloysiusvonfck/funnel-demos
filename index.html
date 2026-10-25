@@ -3,17 +3,117 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MBC funnel demos</title>
+<title>The MBC Group | Website Gallery</title>
+<meta name="description" content="The MBC Group website gallery: every lane in the $350 funnel, built live on real templates. Pick a lane, preview the demo, launch in 48 hours.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="design/tokens.css">
 <link rel="stylesheet" href="design/mbc-kit.css">
+<style>
+  body { margin: 0; }
+  .hero { min-height: 74vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 32px 56px; }
+  .hero .rule { width: 40%; }
+  .hero p.body { max-width: 620px; }
+  .lanes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 32px; }
+  .lane { display: flex; flex-direction: column; gap: 10px; padding: 20px; min-height: 172px; }
+  .lane h3 { margin: 0; }
+  .lane .demos { margin-top: auto; display: flex; flex-direction: column; gap: 4px; }
+  .lane .demos a { font: 400 12px var(--mbc-font-mono); text-transform: uppercase; letter-spacing: var(--mbc-mono-tracking); color: var(--mbc-accent); text-decoration: none; }
+  .lane .demos a:hover { color: var(--mbc-accent-pale); }
+  .lane .soon { font: 400 12px var(--mbc-font-mono); text-transform: uppercase; letter-spacing: var(--mbc-mono-tracking); color: var(--mbc-text-50); }
+  .pricing { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 32px; }
+  .price-card { padding: 26px; }
+  .price { font: 600 clamp(30px, 3vw, 44px)/1 var(--mbc-font-sans); color: var(--mbc-text); letter-spacing: -.02em; margin: 10px 0 12px; }
+  .price small { font: 400 12px var(--mbc-font-mono); text-transform: uppercase; letter-spacing: var(--mbc-mono-tracking); color: var(--mbc-text-50); display: block; margin-top: 10px; }
+  .price-card p { margin: 0; }
+  footer { padding: 48px 32px 64px; border-top: 1px solid var(--mbc-border-12); }
+  @media (max-width: 900px) { .lanes, .pricing { grid-template-columns: 1fr; } }
+</style>
 </head>
-<body class="mbc-page" style="padding:32px">
-<p class="mbc-mono-label">[ MBC Group ] + [ Demo index ]</p>
-<h1 class="mbc-display" style="font-size:clamp(24px,3vw,40px)">Live demos</h1>
-<ul class="mbc-index" style="max-width:640px">
-  <li><span class="n">01</span><div><a class="mbc-link" href="home-services/onepage/" style="font:inherit;text-transform:none;color:#fff"><b>Home services, one-page</b></a><br><span>Front Range Plumbing Co, sample content</span></div></li>
-</ul>
+<body class="mbc-page">
+
+<nav class="mbc-nav">
+  <a href="#top" class="logo"><span class="mbc-display-sm" style="font-size:16px">THE MBC GROUP</span></a>
+  <span class="divider"></span>
+  <div class="links">
+    <a class="mbc-link" href="#lanes">Gallery</a>
+    <a class="mbc-link" href="#process">Process</a>
+    <a class="mbc-link" href="#pricing">Pricing</a>
+  </div>
+  <a class="mbc-btn" href="#contact">Start a launch</a>
+</nav>
+
+<header class="hero" id="top">
+  <hr class="mbc-rule rule">
+  <p class="mbc-mono-label">[ Denver, CO ] + [ 2026 ]</p>
+  <h1 class="mbc-display">Websites for every trade, shipped in 48 hours</h1>
+  <p class="mbc-body body">Every lane in the $350 funnel, built live on real templates. Pick a lane, preview the demo, and launch inside two days. Flat pricing, a human quality gate on every build, and a care plan that keeps the site alive.</p>
+  <p><a class="mbc-btn-accent mbc-btn" href="#lanes">Browse the gallery</a></p>
+</header>
+
+<section class="mbc-section" id="lanes">
+  <div class="mbc-section-head">
+    <span class="mbc-section-num">[ 01 ]</span>
+    <h2 class="mbc-display-sm">The lanes</h2>
+    <span class="mbc-section-year">+ [ 2026 ]</span>
+  </div>
+  <p class="mbc-body-muted" style="max-width:640px">Twelve industry lanes, two demo builds each. Lanes 01 and 02 are live now; the rest are in build and light up as they land.</p>
+  <div class="lanes">
+    <div class="mbc-card lane"><em class="mbc-mono-label">Lane 01</em><h3 class="mbc-display-sm" style="font-size:20px">Home services</h3><div class="demos"><a href="home-services/onepage/">Demo A · one page →</a><span class="soon">Demo B · in build</span></div></div>
+    <div class="mbc-card lane"><em class="mbc-mono-label">Lane 02</em><h3 class="mbc-display-sm" style="font-size:20px">Restaurants</h3><div class="demos"><span class="soon mbc-dot">Demo A · in build</span><span class="soon">Demo B · in build</span></div></div>
+    <div class="mbc-card lane"><em class="mbc-mono-label">Lane 03</em><h3 class="mbc-display-sm" style="font-size:20px">Salons &amp; barbershops</h3><div class="demos"><span class="soon">Demo A · in build</span><span class="soon">Demo B · in build</span></div></div>
+    <div class="mbc-card lane"><em class="mbc-mono-label">Lane 04</em><h3 class="mbc-display-sm" style="font-size:20px">Law offices</h3><div class="demos"><span class="soon">Demo A · in build</span><span class="soon">Demo B · in build</span></div></div>
+    <div class="mbc-card lane"><em class="mbc-mono-label">Lane 05</em><h3 class="mbc-display-sm" style="font-size:20px">Dental &amp; med clinics</h3><div class="demos"><span class="soon">Demo A · in build</span><span class="soon">Demo B · in build</span></div></div>
+    <div class="mbc-card lane"><em class="mbc-mono-label">Lane 06</em><h3 class="mbc-display-sm" style="font-size:20px">Retail boutiques</h3><div class="demos"><span class="soon">Demo A · in build</span><span class="soon">Demo B · in build</span></div></div>
+    <div class="mbc-card lane"><em class="mbc-mono-label">Lane 07</em><h3 class="mbc-display-sm" style="font-size:20px">Fitness studios</h3><div class="demos"><span class="soon">Demo A · in build</span><span class="soon">Demo B · in build</span></div></div>
+    <div class="mbc-card lane"><em class="mbc-mono-label">Lane 08</em><h3 class="mbc-display-sm" style="font-size:20px">Real estate</h3><div class="demos"><span class="soon">Demo A · in build</span><span class="soon">Demo B · in build</span></div></div>
+    <div class="mbc-card lane"><em class="mbc-mono-label">Lane 09</em><h3 class="mbc-display-sm" style="font-size:20px">Auto services</h3><div class="demos"><span class="soon">Demo A · in build</span><span class="soon">Demo B · in build</span></div></div>
+    <div class="mbc-card lane"><em class="mbc-mono-label">Lane 10</em><h3 class="mbc-display-sm" style="font-size:20px">HVAC &amp; electrical</h3><div class="demos"><span class="soon">Demo A · in build</span><span class="soon">Demo B · in build</span></div></div>
+    <div class="mbc-card lane"><em class="mbc-mono-label">Lane 11</em><h3 class="mbc-display-sm" style="font-size:20px">Cleaning services</h3><div class="demos"><span class="soon">Demo A · in build</span><span class="soon">Demo B · in build</span></div></div>
+    <div class="mbc-card lane"><em class="mbc-mono-label">Lane 12</em><h3 class="mbc-display-sm" style="font-size:20px">Pet services</h3><div class="demos"><span class="soon">Demo A · in build</span><span class="soon">Demo B · in build</span></div></div>
+  </div>
+</section>
+
+<section class="mbc-section" id="process">
+  <div class="mbc-section-head">
+    <span class="mbc-section-num">[ 02 ]</span>
+    <h2 class="mbc-display-sm">How a launch runs</h2>
+  </div>
+  <ul class="mbc-index">
+    <li><span class="n">01</span><div><b>Pick a lane</b><br><span>Preview the demos in your trade and choose the build that fits.</span></div></li>
+    <li><span class="n">02</span><div><b>Onboarding, about twenty minutes</b><br><span>A short call captures your services, hours, reviews and photos.</span></div></li>
+    <li><span class="n">03</span><div><b>Human quality gate</b><br><span>A strategist reviews every build before it ships. Nothing launches on autopilot.</span></div></li>
+    <li><span class="n">04</span><div><b>Live in 48 hours</b><br><span>Preview deploy first, your sign-off second, then the site goes live with search wiring.</span></div></li>
+  </ul>
+</section>
+
+<section class="mbc-section" id="pricing">
+  <div class="mbc-section-head">
+    <span class="mbc-section-num">[ 03 ]</span>
+    <h2 class="mbc-display-sm">Pricing</h2>
+  </div>
+  <div class="pricing">
+    <div class="mbc-card price-card"><em class="mbc-mono-label">Launch</em><div class="price">$350<small>one-time · 5 pages</small></div><p class="mbc-body-muted">Five pages from a gallery template, onboarding call, launch in 48 hours.</p></div>
+    <div class="mbc-card price-card"><em class="mbc-mono-label">Growth</em><div class="price">$1,200<small>one-time · ~90 min</small></div><p class="mbc-body-muted">Deeper build with custom copy, more pages and full search wiring.</p></div>
+    <div class="mbc-card price-card"><em class="mbc-mono-label">Custom</em><div class="price">$3,000+<small>scoped per project</small></div><p class="mbc-body-muted">Fully custom design and build, scoped and priced with Matthew directly.</p></div>
+  </div>
+  <p class="mbc-body-muted" style="margin-top:20px"><span class="mbc-mono-label mbc-dot">Care plan</span> $49/mo keeps your site updated, backed up and monitored after launch.</p>
+</section>
+
+<section class="mbc-section" id="contact">
+  <div class="mbc-section-head">
+    <span class="mbc-section-num">[ 04 ]</span>
+    <h2 class="mbc-display-sm">Ready when you are</h2>
+  </div>
+  <p class="mbc-body" style="max-width:560px">Book a session and pick your lane. We handle the rest, and a human signs off before anything ships.</p>
+  <p><a class="mbc-btn" href="https://mbcgroup.ai/book-a-session">Book a session</a></p>
+</section>
+
+<footer>
+  <p class="mbc-mono">The MBC Group · Denver, CO · mbcgroup.ai</p>
+  <p class="mbc-mono" style="color:var(--mbc-text-50)">Website gallery · 12 lanes · flat pricing</p>
+</footer>
+
 </body>
 </html>
