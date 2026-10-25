@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../design/tokens.css">
-<link rel="stylesheet" href="../design/mbc-kit.css">
+<link rel="stylesheet" href="../../design/tokens.css">
+<link rel="stylesheet" href="../../design/mbc-kit.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -24,11 +24,12 @@
 </script>
 <style>
   body { margin: 0; }
-  .hero { min-height: 72vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 32px 48px; }
+  .hero { min-height: 60vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 48px 32px; }
   .hero .rule { width: 40%; }
   .grid2 { display: grid; grid-template-columns: 1.2fr .8fr; gap: 48px; }
   .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .tiles .mbc-tile { background-color: var(--mbc-surface-tint); }
+  .tiles .mbc-tile small { margin-top: 4px; }
   footer { padding: 48px 32px; border-top: 1px solid var(--mbc-border-12); }
   @media (max-width: 800px) { .grid2, .tiles { grid-template-columns: 1fr; } }
 </style>
