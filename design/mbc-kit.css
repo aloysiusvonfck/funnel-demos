@@ -1,4 +1,4 @@
-/* MBC component kit v2
+/* MBC component kit v2.1
    Consumes design/tokens.css. Matches mbcgroup.ai's live site as captured
    Oct 25, 2026. Hero verified against their rendered page: sentence-case
    headline at weight 500, cyan serif logo asset, white pill CTA, dot-matrix
@@ -196,7 +196,9 @@
 }
 @keyframes mbc-blink { 50% { opacity: .35; } }
 
-/* ---- Dot-matrix hero art (their halftone field, CSS-built) ---- */
+/* ---- Dot-matrix hero art (their halftone field, CSS-built) ----
+   Two dot layers: a bright white-violet fine grid on the right half,
+   a deeper indigo grid lower left, over soft indigo washes. */
 
 .mbc-hero-art {
   position: absolute;
@@ -204,26 +206,27 @@
   overflow: hidden;
   z-index: 0;
   background:
-    radial-gradient(1200px 800px at 70% 20%, rgba(59, 63, 216, .32), transparent 62%),
-    radial-gradient(900px 700px at 85% 80%, rgba(59, 63, 216, .2), transparent 60%);
+    radial-gradient(1300px 900px at 72% 22%, rgba(63, 66, 230, .42), transparent 64%),
+    radial-gradient(1000px 800px at 88% 85%, rgba(63, 66, 230, .28), transparent 62%),
+    radial-gradient(700px 600px at 40% 75%, rgba(40, 44, 180, .25), transparent 65%);
 }
 .mbc-hero-art::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(190, 194, 255, .85) 1px, transparent 1.4px);
-  background-size: 9px 9px;
-  -webkit-mask-image: radial-gradient(950px 720px at 72% 32%, #000 0%, rgba(0, 0, 0, .5) 45%, transparent 74%);
-  mask-image: radial-gradient(950px 720px at 72% 32%, #000 0%, rgba(0, 0, 0, .5) 45%, transparent 74%);
+  background-image: radial-gradient(circle, rgba(205, 208, 255, .95) 1.1px, transparent 1.5px);
+  background-size: 8px 8px;
+  -webkit-mask-image: radial-gradient(1050px 820px at 74% 30%, #000 0%, rgba(0, 0, 0, .75) 50%, rgba(0, 0, 0, .25) 72%, transparent 88%);
+  mask-image: radial-gradient(1050px 820px at 74% 30%, #000 0%, rgba(0, 0, 0, .75) 50%, rgba(0, 0, 0, .25) 72%, transparent 88%);
 }
 .mbc-hero-art::after {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(59, 63, 216, .9) 1.2px, transparent 1.6px);
-  background-size: 12px 12px;
-  -webkit-mask-image: radial-gradient(720px 620px at 38% 72%, #000 0%, transparent 70%);
-  mask-image: radial-gradient(720px 620px at 38% 72%, #000 0%, transparent 70%);
+  background-image: radial-gradient(circle, rgba(88, 92, 255, .9) 1.3px, transparent 1.7px);
+  background-size: 11px 11px;
+  -webkit-mask-image: radial-gradient(820px 700px at 40% 74%, rgba(0, 0, 0, .8) 0%, rgba(0, 0, 0, .3) 55%, transparent 78%);
+  mask-image: radial-gradient(820px 700px at 40% 74%, rgba(0, 0, 0, .8) 0%, rgba(0, 0, 0, .3) 55%, transparent 78%);
 }
 
 /* ---- Cards and panels ---- */
