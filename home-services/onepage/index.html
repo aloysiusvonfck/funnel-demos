@@ -3,13 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Front Range Plumbing Co | Denver, CO</title>
+<title>Front Range Plumbing Co | Denver Plumbing</title>
 <meta name="description" content="Front Range Plumbing Co: licensed plumbing for homes and small buildings across Denver. Same-day leaks, water heaters, repipes. Call (303) 555-0114.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../design/tokens.css">
-<link rel="stylesheet" href="../../design/mbc-kit.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -22,93 +21,116 @@
   "url": "https://frontrangeplumbing.example"
 }
 </script>
-<style>
-  body { margin: 0; }
-  .hero { min-height: 60vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 48px 32px; }
-  .hero .rule { width: 40%; }
-  .grid2 { display: grid; grid-template-columns: 1.2fr .8fr; gap: 48px; }
-  .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .tiles .mbc-tile { background-color: var(--mbc-surface-tint); }
-  .tiles .mbc-tile small { margin-top: 4px; }
-  footer { padding: 48px 32px; border-top: 1px solid var(--mbc-border-12); }
-  @media (max-width: 800px) { .grid2, .tiles { grid-template-columns: 1fr; } }
-</style>
 </head>
-<body class="mbc-page">
+<body>
 
-<nav class="mbc-nav">
-  <a href="#top" class="logo"><span class="mbc-display-sm" style="font-size:18px">Front Range Plumbing Co</span></a>
-  <span class="divider"></span>
-  <div class="links">
-    <a class="mbc-link" href="#services">Services</a>
-    <a class="mbc-link" href="#about">About</a>
-    <a class="mbc-link" href="#work">Work</a>
+<div class="topbar">
+  <div class="wrap">
+    <span>Call <strong>(303) 555-0114</strong></span>
+    <span class="hours">Mon-Sat, 7am-6pm · 24/7 emergency line</span>
   </div>
-  <a class="mbc-btn" href="tel:+13035550114">Call (303) 555-0114</a>
-</nav>
+</div>
 
-<header class="hero" id="top">
-  <hr class="mbc-rule rule">
-  <p class="mbc-mono-label">[ Denver, CO ] + [ 2026 ]</p>
-  <h1 class="mbc-display">Same-day plumbing that shows up when it says it will</h1>
-  <p class="mbc-body" style="max-width:560px">Licensed plumbers for homes and small buildings across Denver. Leaks traced, water heaters swapped, repipes done clean. Flat quotes before we start.</p>
-  <p><a class="mbc-btn-accent mbc-btn" href="#contact">Get a quote</a></p>
+<header class="header">
+  <div class="wrap">
+    <a class="logo" href="#top"><span class="mark">✓</span>Front Range Plumbing Co</a>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn-primary" href="tel:+13035550114">Call (303) 555-0114</a>
+  </div>
 </header>
 
-<section class="mbc-section" id="services">
-  <div class="mbc-section-head">
-    <span class="mbc-section-num">01</span>
-    <h2 class="mbc-display-sm">Services</h2>
-    <span class="mbc-section-year">+ [ 2026 ]</span>
+<header class="hero" id="top">
+  <div class="wrap">
+    <p class="eyebrow">Licensed &amp; insured · Denver</p>
+    <h1>Same-day plumbing repairs, done right the first time</h1>
+    <p class="lead">Licensed plumbers for homes and small buildings across Denver. Leaks traced, water heaters swapped, repipes done clean. Flat quotes before we start.</p>
+    <div class="ctas">
+      <a class="btn btn-primary" href="tel:+13035550114">Call now</a>
+      <a class="btn btn-secondary" href="#contact">Get a quote</a>
+    </div>
+    <div class="badges">
+      <span class="badge"><span class="check">✓</span> Fully licensed &amp; insured</span>
+      <span class="badge"><span class="star">★</span> 4.9 · 183+ Google reviews</span>
+      <span class="badge"><span class="check">✓</span> Same-day service</span>
+      <span class="badge"><span class="check">✓</span> Upfront flat pricing</span>
+    </div>
   </div>
-  <ul class="mbc-index">
-    <li><span class="n">01</span><div><b>Leak detection and repair</b><br><span>Slab leaks, pinholes, supply-line drips traced with acoustic gear, not guesswork.</span></div></li>
-    <li><span class="n">02</span><div><b>Water heaters</b><br><span>Tank and tankless installs, same-day swaps in stock for Denver's common sizes.</span></div></li>
-    <li><span class="n">03</span><div><b>Repipes</b><br><span>Galvanized and polybutylene replaced with PEX, walls opened and patched clean.</span></div></li>
-    <li><span class="n">04</span><div><b>Drain and sewer</b><br><span>Camera inspection, hydro-jetting, and spotless cleanouts that actually pass code.</span></div></li>
-  </ul>
-</section>
+</header>
 
-<section class="mbc-section" id="about">
-  <div class="mbc-section-head">
-    <span class="mbc-section-num">02</span>
-    <h2 class="mbc-display-sm">About</h2>
-  </div>
-  <div class="grid2">
-    <p class="mbc-body">Front Range Plumbing Co has run Denver calls since 2011 out of a two-truck shop on Larimer. Every quote is flat, written, and the price you pay. The plumber who answers the phone is the plumber who shows up, and we stock the parts that fail in Denver's older housing stock so most jobs close in one visit.</p>
-    <div>
-      <p class="mbc-mono-label mbc-dot">Google reviews</p>
-      <p class="mbc-body-muted">“Found the slab leak in an hour, quoted it flat, and the crew patched the drywall so well the painter asked who did it.” — Dana W., Wash Park</p>
-      <p class="mbc-body-muted">“Water heater died at 6am, they had a new one in by noon. Texted me the quote before touching a wrench.” — Marcus T., Sloan's Lake</p>
+<section class="section" id="services">
+  <div class="wrap">
+    <p class="kicker">What we do</p>
+    <h2>Services</h2>
+    <div class="cards">
+      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></div><h3>Leak detection and repair</h3><p>Slab leaks, pinholes, supply-line drips traced with acoustic gear, not guesswork.</p></div>
+      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2c2 4 1 6-1 8s-2 5 1 6c2-1 2-3 2-5 3 2 4 5 2 8a5 5 0 0 1-8-2c0-4 4-8 4-15z"/></svg></div><h3>Water heaters</h3><p>Tank and tankless installs, same-day swaps in stock for Denver's common sizes.</p></div>
+      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M14 7l3 3M3 21l7-7 2 2-7 7H3v-2zM16 8l4-4 1 1-4 4-1-1z"/></svg></div><h3>Repipes</h3><p>Galvanized and polybutylene replaced with PEX, walls opened and patched clean.</p></div>
+      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 13h7v7h-7zM11 7h6M17 7v6"/></svg></div><h3>Drain and sewer</h3><p>Camera inspection, hydro-jetting, and cleanouts that actually pass code.</p></div>
+      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3v7a4 4 0 0 0 8 0V7M4 3v18"/></svg></div><h3>Fixtures and faucets</h3><p>Kitchen, bath, and laundry fixtures installed or swapped the same visit.</p></div>
+      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div><h3>24/7 emergency calls</h3><p>Burst pipes and no-water emergencies answered around the clock, every day.</p></div>
     </div>
   </div>
 </section>
 
-<section class="mbc-section" id="work">
-  <div class="mbc-section-head">
-    <span class="mbc-section-num">03</span>
-    <h2 class="mbc-display-sm">Recent work</h2>
-  </div>
-  <div class="tiles">
-    <div class="mbc-tile"><em class="mbc-mono-label">Repipe</em><strong class="mbc-display-sm" style="font-size:20px">1947 bungalow, full PEX</strong><small class="mbc-body-muted">Two days, walls patched, no drywall dust left behind.</small></div>
-    <div class="mbc-tile"><em class="mbc-mono-label">Water heater</em><strong class="mbc-display-sm" style="font-size:20px">Same-day tank swap</strong><small class="mbc-body-muted">Old galvanized venting brought to code while we were in the closet.</small></div>
-    <div class="mbc-tile"><em class="mbc-mono-label">Sewer</em><strong class="mbc-display-sm" style="font-size:20px">Camera-found offset</strong><small class="mbc-body-muted">Spot repair instead of a full dig, saved the client's patio.</small></div>
+<section class="section soft" id="reviews">
+  <div class="wrap">
+    <p class="kicker">Neighbors on the record</p>
+    <h2>Reviews</h2>
+    <div class="rating-summary">
+      <span class="stars">★★★★★</span>
+      <span>4.9 from 183+ Google reviews</span>
+    </div>
+    <div class="reviews-grid">
+      <div class="review"><span class="stars">★★★★★</span><p>“Found the slab leak in an hour, quoted it flat, and the crew patched the drywall so well the painter asked who did it.”</p><p class="who">— Dana W., Wash Park</p></div>
+      <div class="review"><span class="stars">★★★★★</span><p>“Water heater died at 6am, they had a new one in by noon. Texted me the quote before touching a wrench.”</p><p class="who">— Marcus T., Sloan's Lake</p></div>
+      <div class="review"><span class="stars">★★★★★</span><p>“Two other companies wanted to dig up the patio. These folks ran a camera, found the offset, and spot-repaired it instead.”</p><p class="who">— Priya S., Highland</p></div>
+    </div>
   </div>
 </section>
 
-<section class="mbc-section" id="contact">
-  <div class="mbc-section-head">
-    <span class="mbc-section-num">04</span>
-    <h2 class="mbc-display-sm">Contact</h2>
+<section class="section" id="about">
+  <div class="wrap">
+    <p class="kicker">Who you're hiring</p>
+    <h2>About</h2>
+    <p style="max-width:760px">Front Range Plumbing Co has run Denver calls since 2011 out of a two-truck shop on Larimer. Every quote is flat, written, and the price you pay. The plumber who answers the phone is the plumber who shows up, and we stock the parts that fail in Denver's older housing stock so most jobs close in one visit.</p>
+    <p class="kicker" style="margin-top:28px">Service area</p>
+    <div class="chips">
+      <span class="chip">Wash Park</span>
+      <span class="chip">Sloan's Lake</span>
+      <span class="chip">Highland</span>
+      <span class="chip">Cap Hill</span>
+      <span class="chip">Berkeley</span>
+      <span class="chip">Baker</span>
+    </div>
   </div>
-  <p class="mbc-body">Call (303) 555-0114 or email dispatch@frontrangeplumbing.example. Hours: Mon-Sat, 7am-6pm.</p>
-  <p><a class="mbc-btn" href="tel:+13035550114">Call now</a></p>
+</section>
+
+<section class="section" id="contact" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-band">
+      <div>
+        <h2>Need a plumber today?</h2>
+        <p>Call <strong>(303) 555-0114</strong> or email dispatch@frontrangeplumbing.example · Mon-Sat, 7am-6pm</p>
+      </div>
+      <a class="btn btn-primary" href="tel:+13035550114">Call now</a>
+    </div>
+  </div>
 </section>
 
 <footer>
-  <p class="mbc-mono">Front Range Plumbing Co · 2219 Larimer St, Denver, CO 80205</p>
-  <p class="mbc-mono" style="color:var(--mbc-text-50)">Site by The MBC Group</p>
+  <div class="wrap">
+    <p><strong>Front Range Plumbing Co</strong> · 2219 Larimer St, Denver, CO 80205</p>
+    <p>License #PL-24817 · Mon-Sat, 7am-6pm</p>
+    <p class="credit">Site by The MBC Group</p>
+  </div>
 </footer>
+
+<a class="callbar" href="tel:+13035550114">Tap to call (303) 555-0114</a>
 
 </body>
 </html>

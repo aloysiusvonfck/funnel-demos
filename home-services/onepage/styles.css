@@ -1,0 +1,100 @@
+/* Local-trust design language (home services lane).
+   Light, conventional, conversion-first: what a real trade site looks like.
+   Standalone by design: the MBC kit is reserved for the funnel's own gallery. */
+:root {
+  --lt-bg: #ffffff;
+  --lt-soft: #f5f7fa;
+  --lt-ink: #1e293b;
+  --lt-muted: #64748b;
+  --lt-accent: #1d4ed8;
+  --lt-accent-dark: #1e40af;
+  --lt-ok: #16a34a;
+  --lt-star: #f59e0b;
+  --lt-border: #e2e8f0;
+  --lt-footer: #0f172a;
+  --lt-radius: 10px;
+  --lt-radius-lg: 16px;
+  --lt-shadow: 0 1px 3px rgba(15, 23, 42, .08), 0 8px 24px rgba(15, 23, 42, .06);
+  --lt-font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font: 16px/1.6 var(--lt-font); color: var(--lt-ink); background: var(--lt-bg); }
+h1, h2, h3 { line-height: 1.15; margin: 0 0 12px; }
+h1 { font-size: clamp(32px, 4.5vw, 52px); font-weight: 800; letter-spacing: -.02em; }
+h2 { font-size: clamp(26px, 3vw, 36px); font-weight: 800; letter-spacing: -.02em; }
+h3 { font-size: 18px; }
+p { margin: 0 0 12px; }
+a { color: var(--lt-accent); }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+/* Top utility bar + sticky header */
+.topbar { background: var(--lt-footer); color: #e2e8f0; font-size: 13px; }
+.topbar .wrap { display: flex; justify-content: space-between; padding-top: 8px; padding-bottom: 8px; }
+.topbar strong { color: #fff; }
+.header { position: sticky; top: 0; z-index: 50; background: #fff; border-bottom: 1px solid var(--lt-border); }
+.header .wrap { display: flex; align-items: center; gap: 24px; height: 68px; }
+.logo { font-weight: 800; font-size: 19px; color: var(--lt-ink); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+.logo .mark { width: 34px; height: 34px; border-radius: 8px; background: var(--lt-accent); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 17px; }
+.header nav { display: flex; gap: 22px; margin-left: auto; }
+.header nav a { color: var(--lt-ink); text-decoration: none; font-weight: 600; font-size: 15px; }
+.header nav a:hover { color: var(--lt-accent); }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; gap: 8px; border-radius: var(--lt-radius); padding: 12px 22px; font-weight: 700; font-size: 15px; text-decoration: none; cursor: pointer; border: 0; }
+.btn-primary { background: var(--lt-accent); color: #fff; }
+.btn-primary:hover { background: var(--lt-accent-dark); }
+.btn-secondary { background: #fff; color: var(--lt-accent); border: 2px solid var(--lt-accent); }
+
+/* Hero */
+.hero { background: linear-gradient(180deg, #eef3fb 0%, #ffffff 100%); padding: 64px 0 56px; border-bottom: 1px solid var(--lt-border); }
+.eyebrow { color: var(--lt-accent); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px; }
+.hero p.lead { font-size: 18px; color: var(--lt-muted); max-width: 620px; }
+.hero .ctas { display: flex; gap: 12px; flex-wrap: wrap; margin: 24px 0 28px; }
+.badges { display: flex; gap: 10px; flex-wrap: wrap; }
+.badge { display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--lt-border); border-radius: 999px; padding: 8px 14px; font-size: 13.5px; font-weight: 600; box-shadow: var(--lt-shadow); }
+.badge .check { color: var(--lt-ok); font-weight: 800; }
+.badge .star { color: var(--lt-star); }
+
+/* Sections */
+.section { padding: 64px 0; }
+.section.soft { background: var(--lt-soft); }
+.kicker { color: var(--lt-accent); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 8px; }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 28px; }
+.card { background: #fff; border: 1px solid var(--lt-border); border-radius: var(--lt-radius-lg); padding: 22px; box-shadow: var(--lt-shadow); }
+.card .icon { width: 44px; height: 44px; border-radius: 10px; background: #e8effc; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+.card .icon svg { width: 22px; height: 22px; stroke: var(--lt-accent); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.card h3 { margin-bottom: 6px; }
+.card p { color: var(--lt-muted); font-size: 14.5px; margin: 0; }
+
+/* Reviews */
+.rating-summary { display: flex; align-items: center; gap: 10px; margin: 8px 0 4px; font-weight: 700; }
+.stars { color: var(--lt-star); font-size: 18px; letter-spacing: 2px; }
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; }
+.review { background: #fff; border: 1px solid var(--lt-border); border-radius: var(--lt-radius-lg); padding: 22px; box-shadow: var(--lt-shadow); }
+.review p { margin: 0; }
+.review .who { font-weight: 700; font-size: 14px; color: var(--lt-muted); margin-top: 12px; }
+
+/* Service area chips */
+.chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.chip { background: #fff; border: 1px solid var(--lt-border); border-radius: 999px; padding: 8px 16px; font-size: 14px; font-weight: 600; }
+
+/* CTA band */
+.cta-band { background: var(--lt-accent); color: #fff; border-radius: var(--lt-radius-lg); padding: 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.cta-band h2 { margin: 0; color: #fff; }
+.cta-band p { margin: 6px 0 0; color: #dbeafe; }
+.cta-band .btn-primary { background: #fff; color: var(--lt-accent); }
+
+/* Footer */
+footer { background: var(--lt-footer); color: #94a3b8; padding: 48px 0 96px; font-size: 14px; }
+footer strong { color: #e2e8f0; }
+footer a { color: #cbd5e1; }
+.credit { margin-top: 18px; font-size: 12.5px; color: #64748b; }
+
+/* Sticky mobile call bar */
+.callbar { display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; background: var(--lt-accent); color: #fff; text-align: center; padding: 14px; font-weight: 700; text-decoration: none; font-size: 16px; }
+@media (max-width: 860px) {
+  .cards, .reviews-grid { grid-template-columns: 1fr; }
+  .header nav { display: none; }
+  .callbar { display: block; }
+  .topbar .hours { display: none; }
+}
