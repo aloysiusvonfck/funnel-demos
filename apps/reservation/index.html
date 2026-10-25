@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reserve a table</title>
+<style>
+  :root { --app-accent:#1d4ed8; --app-ink:#0f172a; --app-muted:#64748b; --app-line:#e2e8f0; --app-bg:#ffffff; --app-soft:#f8fafc; }
+  * { box-sizing:border-box; }
+  body { font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--app-ink); margin:0; padding:20px; background:var(--app-bg); }
+  h2 { margin:0 0 4px; font-size:20px; }
+  .hint { margin:0 0 14px; color:var(--app-muted); font-size:13px; }
+  label { display:block; font-weight:600; margin:14px 0 5px; font-size:14px; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; }
+  .chips button { padding:9px 12px; border:1px solid var(--app-line); border-radius:8px; background:#fff; font:600 13px system-ui,sans-serif; cursor:pointer; color:var(--app-ink); }
+  .chips button[aria-pressed="true"] { background:var(--app-accent); color:#fff; border-color:var(--app-accent); }
+  input, textarea { width:100%; padding:10px; border:1px solid var(--app-line); border-radius:8px; font:inherit; }
+  .cta { margin-top:16px; width:100%; background:var(--app-accent); color:#fff; border:0; border-radius:8px; padding:13px; font-weight:700; font-size:15px; cursor:pointer; }
+  .done { display:none; background:var(--app-soft); border:1px solid var(--app-line); border-radius:10px; padding:16px; margin-top:14px; }
+  .done b { display:block; margin-bottom:6px; }
+  .sum { color:var(--app-muted); font-size:13px; white-space:pre-wrap; }
+</style>
+</head>
+<body>
+<div id="wrap">
+<h2 id="t">Reserve a table</h2>
+<p class="hint" id="note"></p>
+<label>Pick a day</label>
+<div class="chips" id="days"></div>
+<label>Pick a time</label>
+<div class="chips" id="times"></div>
+<label>Party size</label>
+<div class="chips" id="party"></div>
+<label>Your name<input id="name"></label>
+<label>Phone (for the confirmation text)<input id="phone" type="tel"></label>
+<label>Anything we should know?<textarea id="notes" rows="3"></textarea></label>
+<button class="cta" id="go">Request this table</button>
+</div>
+<div class="done" id="done"><b id="dt"></b><div class="sum" id="ds"></div></div>
+<script type="application/json" id="app-config">
+{
+  "title": "Reserve a table",
+  "note": "We confirm every reservation by text.",
+  "week": {
+    "Mon": ["5:30 PM", "7:30 PM"],
+    "Tue": ["5:30 PM", "7:30 PM"],
+    "Wed": ["5:30 PM", "7:30 PM"],
+    "Thu": ["5:30 PM", "7:30 PM"],
+    "Fri": ["5:00 PM", "6:30 PM", "8:00 PM"],
+    "Sat": ["5:00 PM", "6:30 PM", "8:00 PM"],
+    "Sun": []
+  },
+  "partySizes": [2, 4, 6],
+  "days": 14,
+  "endpoint": "",
+  "email": ""
+}
+</script>
+<script>
+(function () {
+  var cfg = {};
+  try { cfg = JSON.parse(document.getElementById("app-config").textContent); } catch (e) {}
+  document.getElementById("t").textContent = cfg.title || "Reserve a table";
+  document.getElementById("note").textContent = cfg.note || "";
+  var day = null, time = null, party = null;
+  var daysEl = document.getElementById("days"), timesEl = document.getElementById("times"), partyEl = document.getElementById("party");
+  function pick(box, btn, set) {
+    return function () {
+      [].forEach.call(box.children, function (c) { c.setAttribute("aria-pressed", "false"); });
+      btn.setAttribute("aria-pressed", "true");
+      set(btn.dataset.value);
+    };
+  }
+  var WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  var week = cfg.week || {};
+  var today = new Date();
+  var made = 0;
+  for (var i = 1; i <= (cfg.days || 14) && made < 10; i++) {
+    var x = new Date(today.getTime() + i * 864e5);
+    var wd = WEEKDAYS[x.getDay()];
+    var slots = week[wd] || [];
+    if (!slots.length) continue;
+    var b = document.createElement("button");
+    b.type = "button";
+    b.textContent = x.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+    b.dataset.value = x.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
+    b.dataset.wd = wd;
+    b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", function (btn) {
+      return function () {
+        day = btn.dataset.value;
+        [].forEach.call(daysEl.children, function (c) { c.setAttribute("aria-pressed", "false"); });
+        btn.setAttribute("aria-pressed", "true");
+        timesEl.innerHTML = ""; time = null;
+        (week[btn.dataset.wd] || []).forEach(function (s) {
+          var t = document.createElement("button");
+          t.type = "button"; t.textContent = s; t.dataset.value = s;
+          t.setAttribute("aria-pressed", "false");
+          t.addEventListener("click", pick(timesEl, t, function (v) { time = v; }));
+          timesEl.appendChild(t);
+        });
+      };
+    }(b));
+    daysEl.appendChild(b);
+    made++;
+  }
+  (cfg.partySizes || [2, 4, 6]).forEach(function (n) {
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = n + (n === 1 ? " person" : " people"); b.dataset.value = n;
+    b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", pick(partyEl, b, function (v) { party = v; }));
+    partyEl.appendChild(b);
+  });
+  document.getElementById("go").addEventListener("click", function () {
+    var name = document.getElementById("name").value.trim();
+    var phone = document.getElementById("phone").value.trim();
+    var notes = document.getElementById("notes").value.trim();
+    if (!day || !time || !party) { window.alert("Pick a day, a time, and a party size."); return; }
+    if (!name || !phone) { window.alert("Add your name and phone."); return; }
+    var summary = day + " at " + time + " for " + party + "\n" + name + " \u00b7 " + phone + (notes ? "\n" + notes : "");
+    var payload = { kind: "reservation", name: name, phone: phone, notes: notes, requested_day: day, requested_time: time, party_size: party };
+    function show(title, text) {
+      document.getElementById("wrap").style.display = "none";
+      document.getElementById("dt").textContent = title;
+      document.getElementById("ds").textContent = text;
+      document.getElementById("done").style.display = "block";
+    }
+    function fallback() {
+      if (cfg.email) location.href = "mailto:" + cfg.email + "?subject=" + encodeURIComponent("Reservation request") + "&body=" + encodeURIComponent(summary);
+      show("Almost there.", "Copy this and call or text it in:\n\n" + summary);
+    }
+    if (cfg.endpoint) {
+      fetch(cfg.endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+        .then(function (r) { if (!r.ok) throw new Error("bad status"); })
+        .then(function () { show("Table requested.", "We confirm by text shortly. If plans change, call us."); })
+        .catch(fallback);
+    } else { fallback(); }
+  });
+})();
+</script>
+</body>
+</html>

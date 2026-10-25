@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gift cards</title>
+<style>
+  :root { --app-accent:#1d4ed8; --app-ink:#0f172a; --app-muted:#64748b; --app-line:#e2e8f0; --app-bg:#ffffff; --app-soft:#f8fafc; }
+  * { box-sizing:border-box; }
+  body { font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--app-ink); margin:0; padding:20px; background:var(--app-bg); }
+  h2 { margin:0 0 4px; font-size:20px; }
+  .hint { margin:0 0 14px; color:var(--app-muted); font-size:13px; }
+  label { display:block; font-weight:600; margin:14px 0 5px; font-size:14px; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; }
+  .chips button { padding:9px 14px; border:1px solid var(--app-line); border-radius:8px; background:#fff; font:600 13px system-ui,sans-serif; cursor:pointer; color:var(--app-ink); }
+  .chips button[aria-pressed="true"] { background:var(--app-accent); color:#fff; border-color:var(--app-accent); }
+  input, textarea { width:100%; padding:10px; border:1px solid var(--app-line); border-radius:8px; font:inherit; }
+  .cta { margin-top:16px; width:100%; background:var(--app-accent); color:#fff; border:0; border-radius:8px; padding:13px; font-weight:700; font-size:15px; cursor:pointer; }
+  .done { display:none; background:var(--app-soft); border:1px solid var(--app-line); border-radius:10px; padding:16px; margin-top:14px; }
+  .done b { display:block; margin-bottom:6px; }
+  .sum { color:var(--app-muted); font-size:13px; white-space:pre-wrap; }
+  .go { display:inline-block; margin-top:12px; background:var(--app-accent); color:#fff; text-decoration:none; font-weight:700; padding:12px 20px; border-radius:8px; font-size:15px; }
+</style>
+</head>
+<body>
+<div id="wrap">
+<h2 id="t">Gift cards</h2>
+<p class="hint" id="note"></p>
+<label>Amount</label>
+<div class="chips" id="amounts"></div>
+<label id="customLbl" hidden>Custom amount ($)<input id="custom" type="number" min="1" step="1"></label>
+<label>For (their name)<input id="toName"></label>
+<label>Their email<input id="toEmail" type="email"></label>
+<label>Message (optional)<textarea id="msg" rows="2"></textarea></label>
+<label>Your name<input id="fromName"></label>
+<label>Your email<input id="fromEmail" type="email"></label>
+<button class="cta" id="go">Send this gift card</button>
+</div>
+<div class="done" id="done"><b id="dt"></b><div class="sum" id="ds"></div><a class="go" id="pay" href="#" hidden>Go to checkout</a></div>
+<script type="application/json" id="app-config">
+{
+  "title": "Gift cards",
+  "amounts": [25, 50, 100, 250],
+  "allowCustom": true,
+  "checkoutUrl": "",
+  "endpoint": "",
+  "email": "",
+  "note": "We email the gift card within one business day."
+}
+</script>
+<script>
+(function () {
+  var cfg = {};
+  try { cfg = JSON.parse(document.getElementById("app-config").textContent); } catch (e) {}
+  document.getElementById("t").textContent = cfg.title || "Gift cards";
+  document.getElementById("note").textContent = cfg.note || "";
+  var amount = null;
+  var amountsEl = document.getElementById("amounts");
+  var customLbl = document.getElementById("customLbl");
+  function pick(btn) {
+    [].forEach.call(amountsEl.children, function (c) { c.setAttribute("aria-pressed", "false"); });
+    btn.setAttribute("aria-pressed", "true");
+    if (btn.dataset.value === "custom") { amount = null; customLbl.hidden = false; }
+    else { amount = btn.dataset.value; customLbl.hidden = true; }
+  }
+  (cfg.amounts || []).forEach(function (a) {
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = "$" + a; b.dataset.value = a;
+    b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", function () { pick(b); });
+    amountsEl.appendChild(b);
+  });
+  if (cfg.allowCustom) {
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = "Other"; b.dataset.value = "custom";
+    b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", function () { pick(b); });
+    amountsEl.appendChild(b);
+  }
+  document.getElementById("go").addEventListener("click", function () {
+    var amt = amount || document.getElementById("custom").value;
+    var toName = document.getElementById("toName").value.trim();
+    var toEmail = document.getElementById("toEmail").value.trim();
+    var msg = document.getElementById("msg").value.trim();
+    var fromName = document.getElementById("fromName").value.trim();
+    var fromEmail = document.getElementById("fromEmail").value.trim();
+    if (!amt || +amt <= 0) { window.alert("Pick or enter an amount."); return; }
+    if (!toName || !toEmail || !fromName || !fromEmail) { window.alert("Fill in the recipient and your name and email."); return; }
+    var summary = "$" + amt + " gift card for " + toName + " (" + toEmail + ")\n" +
+      "From " + fromName + " (" + fromEmail + ")" + (msg ? "\nMessage: " + msg : "");
+    var payload = { kind: "gift-card", amount: amt, to_name: toName, to_email: toEmail, message: msg, from_name: fromName, from_email: fromEmail };
+    function show(title, text) {
+      document.getElementById("wrap").style.display = "none";
+      document.getElementById("dt").textContent = title;
+      document.getElementById("ds").textContent = text;
+      document.getElementById("done").style.display = "block";
+      if (cfg.checkoutUrl) {
+        var pay = document.getElementById("pay");
+        pay.href = cfg.checkoutUrl; pay.hidden = false;
+      }
+    }
+    function fallback() {
+      if (cfg.email) location.href = "mailto:" + cfg.email + "?subject=" + encodeURIComponent("Gift card order") + "&body=" + encodeURIComponent(summary);
+      show("Almost there.", "Copy this and send it over:\n\n" + summary);
+    }
+    if (cfg.endpoint) {
+      fetch(cfg.endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+        .then(function (r) { if (!r.ok) throw new Error("bad status"); })
+        .then(function () { show("Gift card ordered.", "We email it within one business day.\n\n" + summary); })
+        .catch(fallback);
+    } else { fallback(); }
+  });
+})();
+</script>
+</body>
+</html>

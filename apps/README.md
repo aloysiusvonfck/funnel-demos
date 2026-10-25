@@ -13,6 +13,8 @@ the apps that fit it.
 | quote-calculator | Instant ballpark estimate from service, size and urgency, with a call CTA |
 | service-request | Service request form; posts to the fulfillment webhook when configured, mailto fallback otherwise |
 | booking-request | Day + time picker over the next two weeks, posts a booking request or falls back to mailto |
+| reservation | Restaurant table requests: day, time, party size; posts to the webhook or falls back to mailto |
+| gift-card | Gift card purchase request: amount (preset or custom), recipient, message; hands off to the client's checkout when configured |
 | review-wall | Review cards with stars, fed from a JSON config |
 | testimonial-carousel | Auto-rotating quotes with arrows and dots |
 | before-after | Draggable before/after image comparison for work photos |
@@ -55,11 +57,16 @@ dangling embed.
 
 ## Roadmap (imports and builds)
 
-- Date and time picker on booking-request: vendor flatpickr (MIT license).
+- Date and time picker on booking-request and reservation: vendor flatpickr
+  (MIT license).
 - Map tiles beyond the Google embed: vendor Leaflet (BSD-2-Clause license).
+- Live availability on booking-request and reservation: build against the
+  client's calendar provider (Growth add-on per lane); today the apps show
+  the business's standard weekly slots and every request is confirmed by a
+  person, which is the honest version until the calendar hook exists.
 - Photo and document upload for insurance and invoices: build on the intake
   webhook (needs a storage target; phase 4).
-- Live availability on booking-request: build against the client's calendar
-  provider (Growth add-on per lane).
 - Inventory/price-list app for retail lanes; before/after needs job photos
   from the client's onboarding materials.
+- Gift card payment: the app hands off to the client's own checkout link
+  (their Stripe payment link set as `checkoutUrl`); we never hold card data.

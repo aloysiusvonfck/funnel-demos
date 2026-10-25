@@ -9,12 +9,12 @@ quote-calculator, service-request, before-after, payment-estimator,
 hours-status, faq, review-wall, location-card
 
 ## Restaurants
-menu, promo-banner, hours-status, location-card, photo-gallery, review-wall,
-testimonial-carousel
+menu, reservation, gift-card, promo-banner, hours-status, location-card,
+photo-gallery, review-wall, testimonial-carousel
 
 ## Salons and barbershops
-booking-request, before-after, team-grid, photo-gallery, promo-banner,
-review-wall
+booking-request, before-after, team-grid, gift-card, photo-gallery,
+promo-banner, review-wall
 
 ## Law offices
 faq, service-request, team-grid, testimonial-carousel, hours-status
@@ -24,11 +24,11 @@ booking-request, team-grid, payment-estimator, faq, hours-status,
 location-card
 
 ## Retail boutiques
-promo-banner, photo-gallery, location-card, hours-status, faq
+gift-card, promo-banner, photo-gallery, location-card, hours-status, faq
 
 ## Fitness studios
 class-schedule, payment-estimator (memberships), team-grid,
-testimonial-carousel, promo-banner
+testimonial-carousel, promo-banner, gift-card
 
 ## Real estate
 photo-gallery, before-after (staging), payment-estimator (mortgage), faq,
@@ -42,9 +42,10 @@ hours-status, review-wall
 quote-calculator, before-after, service-request, review-wall, faq
 
 ## Pet services
-booking-request, team-grid, photo-gallery, service-request, promo-banner
+booking-request, team-grid, photo-gallery, gift-card, service-request,
+promo-banner
 
-## Gaps to build next (every lane wants them)
-- Gift card purchase (retail, salons, restaurants, pet services)
-- Order-ahead / reservation widget with live availability (restaurants)
-- Before/after auto-populated from the client's onboarding job photos
+## Open build items
+- Before/after auto-populated from the client's onboarding job photos.
+- Live availability on booking-request and reservation (needs the client's
+  calendar provider; the weekly-slots + human confirmation flow covers launch).
