@@ -58,7 +58,7 @@
     if (endpoint) {
       fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(d) })
         .then(function (r) { if (!r.ok) throw new Error("bad status"); })
-        .then(function () { show("Request received.", "We reply the same business day."); })
+        .then(function () { show("Request sent.", "The configured endpoint accepted the request. The business still needs to follow up."); })
         .catch(function () { fallback(); });
     } else { fallback(); }
     function fallback() {
