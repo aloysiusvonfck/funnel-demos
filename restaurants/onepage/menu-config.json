@@ -1,0 +1,20 @@
+{
+  "title": "Tonight's menu",
+  "note": "Ask about today's specials. The gravy started at 6 AM.",
+  "categories": [
+    { "name": "Starters", "items": [
+      { "name": "Antipasto board", "desc": "Cured meats, cheeses, grilled vegetables", "price": "18" },
+      { "name": "Arancini", "desc": "Crisped risotto spheres, Sunday gravy for dipping", "price": "11", "tags": ["v"] }
+    ] },
+    { "name": "Mains", "items": [
+      { "name": "Branzino al forno", "desc": "Char-grilled whole fish, lemon and herbs", "price": "34", "tags": ["gf"] },
+      { "name": "Tagliatelle bolognese", "desc": "Pasta rolled this morning, six-hour sauce", "price": "26" },
+      { "name": "Margherita DOP", "desc": "Wood-fired, buffalo mozzarella, basil", "price": "19", "tags": ["v"] },
+      { "name": "Vitello tonnato", "desc": "Veal, caper-lemon cream", "price": "21", "tags": ["gf"] }
+    ] },
+    { "name": "Dolci", "items": [
+      { "name": "Tiramisu nonna", "desc": "Espresso-soaked, made at 6 AM daily", "price": "12" },
+      { "name": "Affogato", "desc": "Vanilla gelato drowned in espresso", "price": "9", "tags": ["gf"] }
+    ] }
+  ]
+}
