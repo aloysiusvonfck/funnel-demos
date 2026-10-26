@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Start your site | The MBC Group Website Gallery</title>
+<meta name="description" content="Twenty minutes of questions. Everything below becomes your five-page site, built and reviewed before launch.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --accent:#728EF7; --accent-pale:#c9d3ff; --surface:#0a0b11; --surface2:#08080c; --t88:rgba(255,255,255,.88); --t75:rgba(255,255,255,.75); --t58:rgba(255,255,255,.58); --b10:rgba(255,255,255,.10); --b14:rgba(255,255,255,.14); }
+  * { box-sizing: border-box; }
+  body { margin:0; background:#000; color:var(--t88); font:16px/1.55 "Inter Tight",sans-serif; }
+  .nav { position:sticky; top:12px; z-index:5; display:flex; align-items:center; gap:22px; justify-content:space-between; margin:12px 16px 0; padding:10px 18px; border:1px solid var(--b10); border-radius:999px; background:rgba(12,13,19,.62); backdrop-filter:blur(24px) saturate(160%); }
+  .nav .logo { font-weight:600; letter-spacing:-.02em; color:var(--t88); text-decoration:none; font-size:15px; }
+  .nav .links { display:flex; gap:18px; }
+  .nav .links a { color:var(--t58); text-decoration:none; font-size:14px; }
+  .nav .links a:hover { color:var(--t88); }
+  .dot { width:7px; height:7px; border-radius:999px; background:var(--accent); display:inline-block; box-shadow:0 0 8px var(--accent); animation:pulse 2s infinite; }
+  @keyframes pulse { 50% { opacity:.4; } }
+  main { max-width:720px; margin:0 auto; padding:48px 20px 80px; }
+  .kicker { font:500 11px/1 "DM Mono",monospace; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-pale); }
+  h1 { font-size:clamp(34px,4.4vw,56px); font-weight:500; letter-spacing:-.04em; line-height:1.04; margin:10px 0 8px; text-wrap:balance; }
+  .sub { color:var(--t58); max-width:520px; margin:0 0 30px; }
+  fieldset { border:0; padding:0; margin:0 0 34px; }
+  legend { font:500 11px/1 "DM Mono",monospace; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-pale); margin-bottom:14px; }
+  label { display:block; font-weight:500; font-size:14px; color:var(--t75); margin:0 0 16px; }
+  input, select, textarea { display:block; width:100%; margin-top:6px; padding:11px 12px; background:var(--surface); border:1px solid var(--b14); border-radius:10px; color:var(--t88); font:inherit; font-size:15px; }
+  input:focus, select:focus, textarea:focus { outline:none; border-color:var(--accent); }
+  .two { display:grid; grid-template-columns:1fr 1fr; gap:0 14px; }
+  .check { display:flex; gap:10px; align-items:flex-start; font-weight:400; color:var(--t75); margin:0 0 10px; }
+  .check input { width:auto; margin-top:4px; }
+  .btn { display:inline-block; background:#fff; color:#05060f; border:0; border-radius:999px; padding:13px 26px; font:600 15px "Inter Tight",sans-serif; cursor:pointer; }
+  .btn:hover { background:var(--accent-pale); }
+  .hint { font-size:13px; color:var(--t58); font-weight:400; }
+  #out { margin-top:26px; }
+  .card { border:1px solid var(--b14); background:var(--surface2); border-radius:14px; padding:22px; }
+  .card a { color:var(--accent-pale); }
+  .qa { font:500 11px/1.5 "DM Mono",monospace; letter-spacing:.05em; text-transform:uppercase; color:var(--t58); margin-top:10px; }
+  @media (max-width:640px) { .two { grid-template-columns:1fr; } .nav .links { display:none; } }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="logo" href="https://aloysiusvonfck.github.io/funnel-demos/">The MBC Group <span class="dot"></span></a>
+  <div class="links">
+    <a href="https://aloysiusvonfck.github.io/funnel-demos/">Gallery</a>
+    <a href="https://aloysiusvonfck.github.io/funnel-demos/process.html">Process</a>
+    <a href="https://aloysiusvonfck.github.io/funnel-demos/pricing.html">Pricing</a>
+    <a href="https://aloysiusvonfck.github.io/funnel-demos/contact.html">Contact</a>
+  </div>
+</nav>
+<main>
+  <p class="kicker">[ ONBOARDING ]</p>
+  <h1>Start your site</h1>
+  <p class="sub">Twenty minutes of questions. Everything below becomes your site: the pages, the copy, the structure. You review a live preview before anything goes live.</p>
+  <div id="notice" class="card" style="display:none">
+    <p style="margin:0 0 10px">This copy of the form is a preview. The live intake form runs on our fulfillment server:</p>
+    <p style="margin:0"><a href="http://100.111.247.80:8088/intake">Open the live intake form &rarr;</a></p>
+  </div>
+  <form id="f">
+  <fieldset>
+    <legend>Your business</legend>
+    <label>Business name<input name="business_name" required></label>
+    <label>What kind of business<select name="trade" required><option value="home-services">Home services (plumbing, HVAC, electrical, roofing, landscaping)</option>
+<option value="restaurants">Restaurant or cafe</option>
+<option value="salons">Salon, barbershop or spa-adjacent beauty</option>
+<option value="law-offices">Law office</option>
+<option value="dental-med">Dental or medical practice</option>
+<option value="retail-boutiques">Retail boutique</option>
+<option value="fitness-studios">Gym or fitness studio</option>
+<option value="real-estate">Real estate</option>
+<option value="auto-services">Auto services</option>
+<option value="hvac-electrical">HVAC or electrical</option>
+<option value="cleaning-services">Cleaning services</option>
+<option value="pet-services">Pet services</option>
+<option value="veterinary">Veterinary clinic</option>
+<option value="pest-control">Pest control</option>
+<option value="moving-storage">Moving or storage</option>
+<option value="photography">Photography</option>
+<option value="tutoring-lessons">Tutoring or lessons</option>
+<option value="childcare">Childcare</option>
+<option value="accounting-tax">Accounting or tax</option>
+<option value="spa-massage">Spa or massage</option></select></label>
+    <div class="two">
+      <label>City<input name="city" required></label>
+      <label>State<input name="state" placeholder="CO"></label>
+    </div>
+    <div class="two">
+      <label>Phone<input name="phone" required></label>
+      <label>Email<input name="email" type="email" required></label>
+    </div>
+    <label>Street address<input name="address"></label>
+    <div class="two">
+      <label>Hours<input name="hours" placeholder="Mon-Sat, 7am-6pm"></label>
+      <label>License number<input name="license_number"></label>
+    </div>
+    <label>Current website <span class="hint">(we run a free teardown on it before we build)</span><input name="current_website" placeholder="yourcurrentsite.com"></label>
+  </fieldset>
+  <fieldset>
+    <legend>Pick your tier</legend>
+    <label>Tier<select name="tier" required>
+      <option value="launch">Launch, $350 one-time: five pages, live in 48 hours</option>
+      <option value="growth">Growth, $1,200 one-time: custom copy, apps, neighborhood pages</option>
+      <option value="custom">Custom, $3,000+: scoped and priced with our founder</option>
+    </select></label>
+    <label style="font-weight:400" class="check"><input type="checkbox" name="add_ons" value="care_plan"> Add the care plan, $49/mo: weekly health checks and monthly content refreshes</label>
+    <label style="font-weight:400" class="check"><input type="checkbox" name="add_ons" value="localization"> Neighborhood landing pages for every area you serve (Growth)</label>
+    <label style="font-weight:400" class="check"><input type="checkbox" name="add_ons" value="legacy_rebuild"> Rebuild my old site instead of starting over</label>
+    <label style="font-weight:400" class="check"><input type="checkbox" name="add_ons" value="apps"> Interactive apps bundle: quote calculator, booking, and more (Growth)</label>
+  </fieldset>
+  <fieldset>
+    <legend>Your brand</legend>
+    <label>Your logo <span class="hint">(a direct image link: your Google Business profile photo, Drive or Dropbox)</span><input name="brand_logo_url" placeholder="https://..."></label>
+    <label>Brand materials: links to flyers, cards or job photos that show your colors <span class="hint">(one per line, optional)</span><textarea name="brand_materials_raw" rows="2"></textarea></label>
+    <label>Preferred font <span class="hint">(optional)</span><input name="brand_fonts" placeholder="Poppins"></label>
+  </fieldset>
+  <fieldset>
+    <legend>Your content</legend>
+    <label>Main headline for the front page<input name="hero_headline" placeholder="Same-day plumbing repairs, done right the first time"></label>
+    <label>Subtext under the headline<textarea name="hero_sub" rows="2"></textarea></label>
+    <label>About your business<textarea name="about_paragraph" rows="3"></textarea></label>
+    <label>Services <span class="hint">(one per line, "Name | short description")</span><textarea name="services_raw" rows="5" placeholder="Drain clearing | Kitchen and bath drains, same day"></textarea></label>
+    <label>Reviews <span class="hint">(one per line, "quote | name, neighborhood")</span><textarea name="reviews_raw" rows="3"></textarea></label>
+    <label>Service areas <span class="hint">(comma separated)</span><input name="areas_raw" placeholder="Denver, Lakewood, Arvada"></textarea></label>
+  </fieldset>
+  <button class="btn" type="submit">Build my preview</button>
+  </form>
+  <div id="out"></div>
+</main>
+<script>
+
+const FALLBACK = "http://100.111.247.80:8088";
+const params = new URLSearchParams(location.search);
+const tierSel = document.querySelector('select[name=tier]');
+if (params.get('tier') && ['launch','growth','custom'].includes(params.get('tier'))) tierSel.value = params.get('tier');
+if (params.get('lane')) document.querySelector('select[name=trade]').value = params.get('lane');
+if (location.hostname.endsWith('github.io') || location.protocol === 'file:') {
+  document.getElementById('notice').style.display = 'block';
+  document.getElementById('f').style.display = 'none';
+}
+document.getElementById('f').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.target, data = new FormData(form), cfg = {};
+  for (const [k, v] of data.entries()) cfg[k] = v;
+  cfg.add_ons = data.getAll('add_ons');
+  cfg.lane = cfg.trade; cfg.template = 'onepage';
+  const svcs = (cfg.services_raw || '').split('\n').map(s => s.trim()).filter(Boolean);
+  svcs.slice(0, 6).forEach((s, i) => {
+    const parts = s.split('|');
+    cfg['service_' + (i + 1) + '_name'] = parts[0].trim();
+    cfg['service_' + (i + 1) + '_desc'] = parts.slice(1).join('|').trim();
+  });
+  const revs = (cfg.reviews_raw || '').split('\n').map(s => s.trim()).filter(Boolean);
+  revs.slice(0, 3).forEach((r, i) => {
+    const parts = r.split('|');
+    cfg['review_' + (i + 1)] = parts[0].trim();
+    cfg['review_' + (i + 1) + '_who'] = parts.slice(1).join('|').trim();
+  });
+  (cfg.areas_raw || '').split(',').map(s => s.trim()).filter(Boolean).slice(0, 6).forEach((a, i) => { cfg['area_' + (i + 1)] = a; });
+  (cfg.brand_materials_raw || '').split('\n').map(s => s.trim()).filter(Boolean).slice(0, 3).forEach((u, i) => { cfg['brand_photo_' + (i + 1)] = u; });
+  ['services_raw', 'reviews_raw', 'areas_raw', 'brand_materials_raw'].forEach(k => delete cfg[k]);
+  const out = document.getElementById('out');
+  out.innerHTML = '<p class="hint">Building your preview, this takes about a minute...</p>';
+  let res = null, base = '';
+  try {
+    const r = await fetch('/webhook/intake', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(cfg) });
+    if (!r.ok) throw new Error('status ' + r.status);
+    res = await r.json();
+  } catch (err) {
+    try {
+      const r2 = await fetch(FALLBACK + '/webhook/intake', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(cfg) });
+      if (!r2.ok) throw new Error('status ' + r2.status);
+      res = await r2.json(); base = FALLBACK;
+    } catch (err2) {
+      out.innerHTML = '<div class="card"><p style="margin:0 0 8px">We could not reach the build server. Email your answers to <a href="mailto:information@mbcgroup.ai">information@mbcgroup.ai</a> or call (303) 250-9551 and we will take it from there.</p></div>';
+      return;
+    }
+  }
+  if (res.error) { out.innerHTML = '<div class="card"><p style="margin:0">Build failed: ' + (res.detail || res.fields ? JSON.stringify(res) : res.error) + '</p></div>'; return; }
+  let html = '<div class="card"><p class="kicker" style="margin:0 0 8px">[ PREVIEW READY ]</p>'
+    + '<p style="margin:0 0 6px">Your site preview is built:</p>'
+    + '<p style="margin:0 0 6px"><a href="' + base + res.preview + '">' + base + res.preview + '</a></p>'
+    + '<p class="qa">' + res.qa + '</p>';
+  if (res.areas) html += '<p style="margin:8px 0 0">Neighborhood pages: <a href="' + base + res.areas + '">' + base + res.areas + '</a></p>';
+  if (res.checkout_url) html += '<p style="margin:12px 0 0"><a class="btn" style="text-decoration:none" href="' + res.checkout_url + '">Check out</a></p>';
+  html += '</div>';
+  out.innerHTML = html;
+  out.scrollIntoView({ behavior: 'smooth' });
+});
+</script>
+</body>
+</html>
