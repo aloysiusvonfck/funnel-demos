@@ -36,12 +36,28 @@
   .mbc-nav a.active { color: var(--mbc-accent-pale); }
   .contactgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 24px; }
   @media (max-width: 900px) { .contactgrid { grid-template-columns: 1fr; } }
+
+  /* polish overrides */
+  .mbc-nav .links a { color: var(--mbc-text-75); font-size: 15px; }
+  .footnav { display:flex; gap:20px; margin-top:16px; flex-wrap:wrap; }
+  .footnav a { color: var(--mbc-text-58); text-decoration:none; font:400 12px var(--mbc-font-mono); text-transform:uppercase; letter-spacing:var(--mbc-mono-tracking); }
+  .footnav a:hover { color: var(--mbc-text-75); }
+  footer .dim { color: var(--mbc-text-58); }
+  .lane .lane-desc { color: var(--mbc-text-58); font-size: 14px; font-weight: 400; }
+  .mbc-index .n { color: var(--mbc-text-75); }
+  .mbc-index li div { max-width: 620px; }
+  .price-card { display:flex; flex-direction:column; }
+  .price-card .mbc-body-muted { flex:1; }
+  .price-card p:last-child { margin-top:auto; padding-top:16px; }
+  .price-card .mbc-btn { display:block; text-align:center; }
+  .carecard { margin-top:24px; display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+  .carecard .mbc-btn { flex:none; }
 </style>
 </head>
 <body class="mbc-page">
 
 <nav class="mbc-nav">
-  <a href="#top" class="logo"><img src="https://mbcgroup.ai/assets/mbc-logo.png" alt="The MBC Group"></a>
+  <a href="#top" class="logo"><img src="assets/mbc-logo.png" alt="The MBC Group"></a>
   <span class="divider"></span>
   <div class="links">
     <a class="mbc-link" href="index.html#lanes">Gallery</a>
@@ -51,24 +67,20 @@
   </div>
   <a class="mbc-btn" href="intake.html">Start your site</a>
 </nav><section class="mbc-section pagehead"><div class="mbc-section-head"><span class="mbc-section-num">[ PRICING ]</span><h1 class="mbc-display-sm">Flat pricing</h1></div></section>
-<section class="mbc-section" id="pricing">
-  <div class="mbc-section-head">
-    <span class="mbc-section-num">[ 04 ]</span>
-    <h2 class="mbc-display-sm">Pricing</h2>
-  </div>
   <div class="pricing">
-    <div class="mbc-card price-card"><em class="mbc-mono-label">Launch</em><div class="price">$350<small>one-time · 5 pages</small></div><p class="mbc-body-muted">Five pages from a gallery template, one onboarding call, live in 48 hours.</p><p style="margin:16px 0 0"><a class="mbc-btn" href="intake.html?tier=launch">Start with Launch</a></p></div>
-    <div class="mbc-card price-card"><em class="mbc-mono-label">Growth</em><div class="price">$1,200<small>one-time · deep build</small></div><p class="mbc-body-muted">Custom copy, more pages, full search wiring, interactive apps like quote calculators and booking forms, plus neighborhood landing pages for every area you serve.</p><p style="margin:16px 0 0"><a class="mbc-btn" href="intake.html?tier=growth">Start with Growth</a></p></div>
-    <div class="mbc-card price-card"><em class="mbc-mono-label">Custom</em><div class="price">$3,000+<small>scoped per project</small></div><p class="mbc-body-muted">A fully custom site with interactive apps built in, styled around your existing brand materials. Designed and priced with our founder directly.</p><p style="margin:16px 0 0"><a class="mbc-btn" href="intake.html?tier=custom">Start with Custom</a></p></div>
+    <div class="mbc-card price-card"><em class="mbc-mono-label" style="color:var(--mbc-accent-pale)">Launch</em><div class="price">$350<small>one-time · 5 pages</small></div><p class="mbc-body-muted">Five pages from a gallery template, one onboarding call, live in 48 hours.</p><p style="margin:16px 0 0"><a class="mbc-btn" href="intake.html?tier=launch">Start with Launch</a></p></div>
+    <div class="mbc-card price-card"><em class="mbc-mono-label" style="color:var(--mbc-accent-pale)">Growth</em><div class="price">$1,200<small>one-time · deep build</small></div><p class="mbc-body-muted">Custom copy, more pages, full search wiring, interactive apps like quote calculators and booking forms, plus neighborhood landing pages for every area you serve.</p><p style="margin:16px 0 0"><a class="mbc-btn" href="intake.html?tier=growth">Start with Growth</a></p></div>
+    <div class="mbc-card price-card"><em class="mbc-mono-label" style="color:var(--mbc-accent-pale)">Custom</em><div class="price">$3,000+<small>scoped per project</small></div><p class="mbc-body-muted">A fully custom site with interactive apps built in, styled around your existing brand materials. Designed and priced with our founder directly.</p><p style="margin:16px 0 0"><a class="mbc-btn" href="intake.html?tier=custom">Start with Custom</a></p></div>
   </div>
-  <p class="mbc-body-muted" style="margin-top:20px"><span class="mbc-mono-label mbc-dot">Care plan</span> $49/mo keeps your site updated and backed up, with weekly checks for broken links, stale hours and expired offers.</p>
+  <div class="mbc-card carecard"><span class="mbc-mono-label mbc-dot" style="color:var(--mbc-accent-pale)">Care plan</span><p class="mbc-body-muted" style="flex:1;min-width:260px;margin:0">$49/mo keeps your site updated and backed up, with weekly checks for broken links, stale hours and expired offers.</p><a class="mbc-btn" href="intake.html?tier=launch">Add it when you submit</a></div>
 </section><section class="mbc-section" id="contact">
-  <div class="mbc-section-head"><span class="mbc-section-num">[ 03 ]</span><h2 class="mbc-display-sm">Ready when you are</h2></div>
+  <div class="mbc-section-head"><span class="mbc-section-num">[ 02 ]</span><h2 class="mbc-display-sm">Ready when you are</h2></div>
   <p class="mbc-body" style="max-width:560px">Pick your demo, book a session, and we take it from there. A person signs off before anything ships.</p>
   <p><a class="mbc-btn" href="contact.html">Get in touch</a></p>
 </section><footer>
   <p class="mbc-mono">The MBC Group · Denver, CO · mbcgroup.ai</p>
   <p class="mbc-mono" style="color:var(--mbc-text-50)">Website gallery · 20 industries · flat pricing</p>
+<div class="footnav"><a href="index.html">Gallery</a><a href="process.html">Process</a><a href="pricing.html">Pricing</a><a href="intake.html">Start your site</a></div>
 </footer>
 
 </body>

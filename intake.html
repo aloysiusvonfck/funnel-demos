@@ -57,7 +57,7 @@
   <p class="sub">Twenty minutes of questions. Everything below becomes your site: the pages, the copy, the structure. You review a live preview before anything goes live.</p>
   <div id="notice" class="card" style="display:none">
     <p style="margin:0 0 10px">This copy of the form is a preview. The live intake form runs on our fulfillment server:</p>
-    <p style="margin:0"><a href="http://100.111.247.80:8088/intake">Open the live intake form &rarr;</a></p>
+    <p style="margin:0 0 12px"><a class="btn" style="text-decoration:none" href="http://100.111.247.80:8088/intake">Open the live intake form &rarr;</a></p><p class="hint" style="margin:0">Prefer to talk first? Email information@mbcgroup.ai or call (303) 250-9551.</p>
   </div>
   <form id="f">
   <fieldset>
@@ -129,6 +129,7 @@
   </form>
   <div id="out"></div>
 </main>
+<footer style="max-width:720px;margin:0 auto;padding:0 20px 40px"><p style="color:var(--t58);font:400 12px 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase">The MBC Group &middot; Denver, CO &middot; <a href="https://mbcgroup.ai" style="color:var(--t75)">mbcgroup.ai</a></p></footer>
 <script>
 
 const FALLBACK = "http://100.111.247.80:8088";
@@ -139,6 +140,7 @@ if (params.get('lane')) document.querySelector('select[name=trade]').value = par
 if (location.hostname.endsWith('github.io') || location.protocol === 'file:') {
   document.getElementById('notice').style.display = 'block';
   document.getElementById('f').style.display = 'none';
+  document.querySelector('.sub').textContent = 'This copy of the form is a preview. The live intake form runs on our fulfillment server; open it there and your answers build your site.';
 }
 document.getElementById('f').addEventListener('submit', async (e) => {
   e.preventDefault();
