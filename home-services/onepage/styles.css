@@ -98,3 +98,8 @@ footer a { color: #cbd5e1; }
   .callbar { display: block; }
   .topbar .hours { display: none; }
 }
+
+/* Multi-page additions */
+.pagehead { padding: 52px 0 4px; }
+.pagehead h1 { font-size: clamp(30px, 3.6vw, 44px); margin: 4px 0 0; }
+.header nav a.active { color: var(--lt-accent); }

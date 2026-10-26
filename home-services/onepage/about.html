@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About | Front Range Plumbing Co</title>
+<meta name="description" content="About Front Range Plumbing Co, serving Denver. Call (303) 555-0114 today.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>Call <strong>(303) 555-0114</strong></span>
+    <span class="hours">Mon-Sat, 7am-6pm · 24/7 emergency line</span>
+  </div>
+</div>
+
+<header class="header">
+  <div class="wrap">
+    <a class="logo" href="#top"><span class="mark">✓</span>Front Range Plumbing Co</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="index.html#estimate" data-app="quote-calculator">Estimate</a>
+      <a href="reviews.html">Reviews</a>
+      <a class="active" href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="btn btn-primary" href="tel:(303) 555-0114">Call (303) 555-0114</a>
+  </div>
+</header><section class="pagehead"><div class="wrap"><p class="kicker">Who you're hiring</p><h1>About</h1></div></section><section class="section" id="about">
+  <div class="wrap">
+    <p class="kicker">Who you're hiring</p>
+    <h2>About</h2>
+    <p data-field="about" style="max-width:760px">Front Range Plumbing Co has run Denver calls since 2011 out of a two-truck shop on Larimer. Every quote is flat, written, and the price you pay. The plumber who answers the phone is the plumber who shows up, and we stock the parts that fail in Denver's older housing stock so most jobs close in one visit.</p>
+    <p class="kicker" style="margin-top:28px">Service area</p>
+    <div class="chips">
+      <span class="chip" data-field="area_1">Wash Park</span>
+      <span class="chip" data-field="area_2">Sloan's Lake</span>
+      <span class="chip" data-field="area_3">Highland</span>
+      <span class="chip" data-field="area_4">Cap Hill</span>
+      <span class="chip" data-field="area_5">Berkeley</span>
+      <span class="chip" data-field="area_6">Baker</span>
+    </div>
+  </div>
+</section><section class="section" id="contact" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-band">
+      <div>
+        <h2 data-field="cta_headline">Need a plumber today?</h2>
+        <p>Call <strong>(303) 555-0114</strong> or email dispatch@frontrangeplumbing.example · Mon-Sat, 7am-6pm · 24/7 emergency line</p>
+      </div>
+      <a class="btn btn-primary" href="tel:(303) 555-0114">Call now</a>
+    </div>
+  </div>
+</section><footer>
+  <div class="wrap">
+    <p><strong>Front Range Plumbing Co</strong> · 2219 Larimer St, Denver</p>
+    <p>License #PL-24817 · Mon-Sat, 7am-6pm · Mon-Sat, 7am-6pm · 24/7 emergency line</p>
+    <p class="credit">Site by The MBC Group</p>
+  </div>
+</footer><a class="callbar" href="tel:(303) 555-0114">Tap to call (303) 555-0114</a>
+
+<script>
+/* Onboarding wiring: the webhook writes site.config.json values into every
+   [data-field] node at build time; this runtime pass covers preview deploys. */
+fetch('site.config.json').then(r => r.json()).then(cfg => {
+  document.querySelectorAll('[data-field]').forEach(el => {
+    const v = cfg[el.dataset.field];
+    if (v && !v.startsWith('{{')) el.textContent = v;
+  });
+  document.title = (cfg.business_name || '').replace(/\{\{.*\}\}/, 'Business') + ' | ' + cfg.city + ' ' + (cfg.trade || '');
+});
+</script>
+</body>
+</html>

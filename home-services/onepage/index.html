@@ -9,15 +9,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "Front Range Plumbing Co",
-  "telephone": "+1-303-555-0114",
+  "telephone": "(303) 555-0114",
   "email": "dispatch@frontrangeplumbing.example",
-  "address": {"@type": "PostalAddress", "streetAddress": "2219 Larimer St", "addressLocality": "Denver", "addressRegion": "CO", "postalCode": "80205"},
-  "openingHours": "Mo-Sa 07:00-18:00",
+  "address": {"@type": "PostalAddress", "streetAddress": "2219 Larimer St", "addressLocality": "Denver"},
+  "openingHours": "Mon-Sat, 7am-6pm · 24/7 emergency line",
   "url": "https://frontrangeplumbing.example"
 }
 </script>
@@ -35,13 +36,14 @@
   <div class="wrap">
     <a class="logo" href="#top"><span class="mark">✓</span>Front Range Plumbing Co</a>
     <nav>
-      <a href="#services">Services</a>
-      <a href="#estimate">Estimate</a>
-      <a href="#reviews">Reviews</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="index.html#estimate" data-app="quote-calculator">Estimate</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
     </nav>
-    <a class="btn btn-primary" href="tel:+13035550114">Call (303) 555-0114</a>
+    <a class="btn btn-primary" href="tel:(303) 555-0114">Call (303) 555-0114</a>
   </div>
 </header>
 
@@ -51,7 +53,7 @@
     <h1>Same-day plumbing repairs, done right the first time</h1>
     <p class="lead">Licensed plumbers for homes and small buildings across Denver. Leaks traced, water heaters swapped, repipes done clean. Flat quotes before we start.</p>
     <div class="ctas">
-      <a class="btn btn-primary" href="tel:+13035550114">Call now</a>
+      <a class="btn btn-primary" href="tel:(303) 555-0114">Call now</a>
       <a class="btn btn-secondary" href="#contact">Get a quote</a>
     </div>
     <div class="badges">
@@ -61,33 +63,27 @@
       <span class="badge"><span class="check">✓</span> Upfront flat pricing</span>
     </div>
   </div>
-</header>
-
-<section class="section" id="services">
+</header><section class="section" id="services">
   <div class="wrap">
     <p class="kicker">What we do</p>
     <h2>Services</h2>
     <div class="cards">
-      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></div><h3>Leak detection and repair</h3><p>Slab leaks, pinholes, supply-line drips traced with acoustic gear, not guesswork.</p></div>
-      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2c2 4 1 6-1 8s-2 5 1 6c2-1 2-3 2-5 3 2 4 5 2 8a5 5 0 0 1-8-2c0-4 4-8 4-15z"/></svg></div><h3>Water heaters</h3><p>Tank and tankless installs, same-day swaps in stock for Denver's common sizes.</p></div>
-      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M14 7l3 3M3 21l7-7 2 2-7 7H3v-2zM16 8l4-4 1 1-4 4-1-1z"/></svg></div><h3>Repipes</h3><p>Galvanized and polybutylene replaced with PEX, walls opened and patched clean.</p></div>
-      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 13h7v7h-7zM11 7h6M17 7v6"/></svg></div><h3>Drain and sewer</h3><p>Camera inspection, hydro-jetting, and cleanouts that actually pass code.</p></div>
-      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3v7a4 4 0 0 0 8 0V7M4 3v18"/></svg></div><h3>Fixtures and faucets</h3><p>Kitchen, bath, and laundry fixtures installed or swapped the same visit.</p></div>
-      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div><h3>24/7 emergency calls</h3><p>Burst pipes and no-water emergencies answered around the clock, every day.</p></div>
+      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></div><h3 data-field="service_1_name">Leak detection and repair</h3><p data-field="service_1_desc">Slab leaks, pinholes, supply-line drips traced with acoustic gear, not guesswork.</p></div>
+      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2c2 4 1 6-1 8s-2 5 1 6c2-1 2-3 2-5 3 2 4 5 2 8a5 5 0 0 1-8-2c0-4 4-8 4-15z"/></svg></div><h3 data-field="service_2_name">Water heaters</h3><p data-field="service_2_desc">Tank and tankless installs, same-day swaps in stock for Denver's common sizes.</p></div>
+      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M14 7l3 3M3 21l7-7 2 2-7 7H3v-2zM16 8l4-4 1 1-4 4-1-1z"/></svg></div><h3 data-field="service_3_name">Repipes</h3><p data-field="service_3_desc">Galvanized and polybutylene replaced with PEX, walls opened and patched clean.</p></div>
+      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 13h7v7h-7zM11 7h6M17 7v6"/></svg></div><h3 data-field="service_4_name">Drain and sewer</h3><p data-field="service_4_desc">Camera inspection, hydro-jetting, and cleanouts that actually pass code.</p></div>
+      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3v7a4 4 0 0 0 8 0V7M4 3v18"/></svg></div><h3 data-field="service_5_name">Fixtures and faucets</h3><p data-field="service_5_desc">Kitchen, bath, and laundry fixtures installed or swapped the same visit.</p></div>
+      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div><h3 data-field="service_6_name">24/7 emergency calls</h3><p data-field="service_6_desc">Burst pipes and no-water emergencies answered around the clock, every day.</p></div>
     </div>
   </div>
-</section>
-
-<section class="section soft" id="estimate">
+</section><section class="section soft" id="estimate" data-app="quote-calculator">
   <div class="wrap">
     <p class="kicker">Know before you call</p>
     <h2>Instant estimate</h2>
     <p style="max-width:720px">Pick a job, tell us your home size, and get a ballpark in ten seconds. The final price is always a flat quote confirmed on site before any work starts.</p>
-    <iframe src="../../apps/quote-calculator/index.html" style="width:100%;max-width:640px;height:620px;border:1px solid #e2e8f0;border-radius:12px;background:#fff;display:block;margin:0 auto" title="Instant estimate calculator" loading="lazy"></iframe>
+    <iframe src="/apps/quote-calculator/index.html" style="width:100%;max-width:640px;height:620px;border:1px solid var(--lt-border);border-radius:var(--lt-radius-lg);background:#fff;display:block;margin:0 auto" title="Instant estimate calculator" loading="lazy"></iframe>
   </div>
-</section>
-
-<section class="section soft" id="reviews">
+</section><section class="section soft" id="reviews">
   <div class="wrap">
     <p class="kicker">Neighbors on the record</p>
     <h2>Reviews</h2>
@@ -96,51 +92,54 @@
       <span>4.9 from 183+ Google reviews</span>
     </div>
     <div class="reviews-grid">
-      <div class="review"><span class="stars">★★★★★</span><p>“Found the slab leak in an hour, quoted it flat, and the crew patched the drywall so well the painter asked who did it.”</p><p class="who">— Dana W., Wash Park</p></div>
-      <div class="review"><span class="stars">★★★★★</span><p>“Water heater died at 6am, they had a new one in by noon. Texted me the quote before touching a wrench.”</p><p class="who">— Marcus T., Sloan's Lake</p></div>
-      <div class="review"><span class="stars">★★★★★</span><p>“Two other companies wanted to dig up the patio. These folks ran a camera, found the offset, and spot-repaired it instead.”</p><p class="who">— Priya S., Highland</p></div>
+      <div class="review"><span class="stars">★★★★★</span><p data-field="review_1">“Found the slab leak in an hour, quoted it flat, and the crew patched the drywall so well the painter asked who did it.”</p><p class="who" data-field="review_1_who">— Dana W., Wash Park</p></div>
+      <div class="review"><span class="stars">★★★★★</span><p data-field="review_2">“Water heater died at 6am, they had a new one in by noon. Texted me the quote before touching a wrench.”</p><p class="who" data-field="review_2_who">— Marcus T., Sloan's Lake</p></div>
+      <div class="review"><span class="stars">★★★★★</span><p data-field="review_3">“Two other companies wanted to dig up the patio. These folks ran a camera, found the offset, and spot-repaired it instead.”</p><p class="who" data-field="review_3_who">— Priya S., Highland</p></div>
     </div>
   </div>
-</section>
-
-<section class="section" id="about">
+</section><section class="section" id="about">
   <div class="wrap">
     <p class="kicker">Who you're hiring</p>
     <h2>About</h2>
-    <p style="max-width:760px">Front Range Plumbing Co has run Denver calls since 2011 out of a two-truck shop on Larimer. Every quote is flat, written, and the price you pay. The plumber who answers the phone is the plumber who shows up, and we stock the parts that fail in Denver's older housing stock so most jobs close in one visit.</p>
+    <p data-field="about" style="max-width:760px">Front Range Plumbing Co has run Denver calls since 2011 out of a two-truck shop on Larimer. Every quote is flat, written, and the price you pay. The plumber who answers the phone is the plumber who shows up, and we stock the parts that fail in Denver's older housing stock so most jobs close in one visit.</p>
     <p class="kicker" style="margin-top:28px">Service area</p>
     <div class="chips">
-      <span class="chip">Wash Park</span>
-      <span class="chip">Sloan's Lake</span>
-      <span class="chip">Highland</span>
-      <span class="chip">Cap Hill</span>
-      <span class="chip">Berkeley</span>
-      <span class="chip">Baker</span>
+      <span class="chip" data-field="area_1">Wash Park</span>
+      <span class="chip" data-field="area_2">Sloan's Lake</span>
+      <span class="chip" data-field="area_3">Highland</span>
+      <span class="chip" data-field="area_4">Cap Hill</span>
+      <span class="chip" data-field="area_5">Berkeley</span>
+      <span class="chip" data-field="area_6">Baker</span>
     </div>
   </div>
-</section>
-
-<section class="section" id="contact" style="padding-top:0">
+</section><section class="section" id="contact" style="padding-top:0">
   <div class="wrap">
     <div class="cta-band">
       <div>
-        <h2>Need a plumber today?</h2>
-        <p>Call <strong>(303) 555-0114</strong> or email dispatch@frontrangeplumbing.example · Mon-Sat, 7am-6pm</p>
+        <h2 data-field="cta_headline">Need a plumber today?</h2>
+        <p>Call <strong>(303) 555-0114</strong> or email dispatch@frontrangeplumbing.example · Mon-Sat, 7am-6pm · 24/7 emergency line</p>
       </div>
-      <a class="btn btn-primary" href="tel:+13035550114">Call now</a>
+      <a class="btn btn-primary" href="tel:(303) 555-0114">Call now</a>
     </div>
   </div>
-</section>
-
-<footer>
+</section><footer>
   <div class="wrap">
-    <p><strong>Front Range Plumbing Co</strong> · 2219 Larimer St, Denver, CO 80205</p>
-    <p>License #PL-24817 · Mon-Sat, 7am-6pm</p>
+    <p><strong>Front Range Plumbing Co</strong> · 2219 Larimer St, Denver</p>
+    <p>License #PL-24817 · Mon-Sat, 7am-6pm · Mon-Sat, 7am-6pm · 24/7 emergency line</p>
     <p class="credit">Site by The MBC Group</p>
   </div>
-</footer>
+</footer><a class="callbar" href="tel:(303) 555-0114">Tap to call (303) 555-0114</a>
 
-<a class="callbar" href="tel:+13035550114">Tap to call (303) 555-0114</a>
-
+<script>
+/* Onboarding wiring: the webhook writes site.config.json values into every
+   [data-field] node at build time; this runtime pass covers preview deploys. */
+fetch('site.config.json').then(r => r.json()).then(cfg => {
+  document.querySelectorAll('[data-field]').forEach(el => {
+    const v = cfg[el.dataset.field];
+    if (v && !v.startsWith('{{')) el.textContent = v;
+  });
+  document.title = (cfg.business_name || '').replace(/\{\{.*\}\}/, 'Business') + ' | ' + cfg.city + ' ' + (cfg.trade || '');
+});
+</script>
 </body>
 </html>

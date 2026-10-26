@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Front Range Plumbing Co Services | Denver</title>
+<meta name="description" content="Services from Front Range Plumbing Co in Denver: Leak detection and repair, Water heaters, Repipes and more. Call (303) 555-0114.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>Call <strong>(303) 555-0114</strong></span>
+    <span class="hours">Mon-Sat, 7am-6pm · 24/7 emergency line</span>
+  </div>
+</div>
+
+<header class="header">
+  <div class="wrap">
+    <a class="logo" href="#top"><span class="mark">✓</span>Front Range Plumbing Co</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a class="active" href="services.html">Services</a>
+      <a href="index.html#estimate" data-app="quote-calculator">Estimate</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="btn btn-primary" href="tel:(303) 555-0114">Call (303) 555-0114</a>
+  </div>
+</header><section class="pagehead"><div class="wrap"><p class="kicker">What we do</p><h1>Services</h1></div></section><section class="section" id="services">
+  <div class="wrap">
+    <p class="kicker">What we do</p>
+    <h2>Services</h2>
+    <div class="cards">
+      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></div><h3 data-field="service_1_name">Leak detection and repair</h3><p data-field="service_1_desc">Slab leaks, pinholes, supply-line drips traced with acoustic gear, not guesswork.</p></div>
+      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2c2 4 1 6-1 8s-2 5 1 6c2-1 2-3 2-5 3 2 4 5 2 8a5 5 0 0 1-8-2c0-4 4-8 4-15z"/></svg></div><h3 data-field="service_2_name">Water heaters</h3><p data-field="service_2_desc">Tank and tankless installs, same-day swaps in stock for Denver's common sizes.</p></div>
+      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M14 7l3 3M3 21l7-7 2 2-7 7H3v-2zM16 8l4-4 1 1-4 4-1-1z"/></svg></div><h3 data-field="service_3_name">Repipes</h3><p data-field="service_3_desc">Galvanized and polybutylene replaced with PEX, walls opened and patched clean.</p></div>
+      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 13h7v7h-7zM11 7h6M17 7v6"/></svg></div><h3 data-field="service_4_name">Drain and sewer</h3><p data-field="service_4_desc">Camera inspection, hydro-jetting, and cleanouts that actually pass code.</p></div>
+      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3v7a4 4 0 0 0 8 0V7M4 3v18"/></svg></div><h3 data-field="service_5_name">Fixtures and faucets</h3><p data-field="service_5_desc">Kitchen, bath, and laundry fixtures installed or swapped the same visit.</p></div>
+      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div><h3 data-field="service_6_name">24/7 emergency calls</h3><p data-field="service_6_desc">Burst pipes and no-water emergencies answered around the clock, every day.</p></div>
+    </div>
+  </div>
+</section><section class="section" id="contact" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-band">
+      <div>
+        <h2 data-field="cta_headline">Need a plumber today?</h2>
+        <p>Call <strong>(303) 555-0114</strong> or email dispatch@frontrangeplumbing.example · Mon-Sat, 7am-6pm · 24/7 emergency line</p>
+      </div>
+      <a class="btn btn-primary" href="tel:(303) 555-0114">Call now</a>
+    </div>
+  </div>
+</section><footer>
+  <div class="wrap">
+    <p><strong>Front Range Plumbing Co</strong> · 2219 Larimer St, Denver</p>
+    <p>License #PL-24817 · Mon-Sat, 7am-6pm · Mon-Sat, 7am-6pm · 24/7 emergency line</p>
+    <p class="credit">Site by The MBC Group</p>
+  </div>
+</footer><a class="callbar" href="tel:(303) 555-0114">Tap to call (303) 555-0114</a>
+
+<script>
+/* Onboarding wiring: the webhook writes site.config.json values into every
+   [data-field] node at build time; this runtime pass covers preview deploys. */
+fetch('site.config.json').then(r => r.json()).then(cfg => {
+  document.querySelectorAll('[data-field]').forEach(el => {
+    const v = cfg[el.dataset.field];
+    if (v && !v.startsWith('{{')) el.textContent = v;
+  });
+  document.title = (cfg.business_name || '').replace(/\{\{.*\}\}/, 'Business') + ' | ' + cfg.city + ' ' + (cfg.trade || '');
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reviews | Front Range Plumbing Co</title>
+<meta name="description" content="What Denver neighbors say about Front Range Plumbing Co. Call (303) 555-0114 today.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>Call <strong>(303) 555-0114</strong></span>
+    <span class="hours">Mon-Sat, 7am-6pm · 24/7 emergency line</span>
+  </div>
+</div>
+
+<header class="header">
+  <div class="wrap">
+    <a class="logo" href="#top"><span class="mark">✓</span>Front Range Plumbing Co</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="index.html#estimate" data-app="quote-calculator">Estimate</a>
+      <a class="active" href="reviews.html">Reviews</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="btn btn-primary" href="tel:(303) 555-0114">Call (303) 555-0114</a>
+  </div>
+</header><section class="pagehead"><div class="wrap"><p class="kicker">Neighbors on the record</p><h1>Reviews</h1></div></section><section class="section soft" id="reviews">
+  <div class="wrap">
+    <p class="kicker">Neighbors on the record</p>
+    <h2>Reviews</h2>
+    <div class="rating-summary">
+      <span class="stars">★★★★★</span>
+      <span>4.9 from 183+ Google reviews</span>
+    </div>
+    <div class="reviews-grid">
+      <div class="review"><span class="stars">★★★★★</span><p data-field="review_1">“Found the slab leak in an hour, quoted it flat, and the crew patched the drywall so well the painter asked who did it.”</p><p class="who" data-field="review_1_who">— Dana W., Wash Park</p></div>
+      <div class="review"><span class="stars">★★★★★</span><p data-field="review_2">“Water heater died at 6am, they had a new one in by noon. Texted me the quote before touching a wrench.”</p><p class="who" data-field="review_2_who">— Marcus T., Sloan's Lake</p></div>
+      <div class="review"><span class="stars">★★★★★</span><p data-field="review_3">“Two other companies wanted to dig up the patio. These folks ran a camera, found the offset, and spot-repaired it instead.”</p><p class="who" data-field="review_3_who">— Priya S., Highland</p></div>
+    </div>
+  </div>
+</section><section class="section" id="contact" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-band">
+      <div>
+        <h2 data-field="cta_headline">Need a plumber today?</h2>
+        <p>Call <strong>(303) 555-0114</strong> or email dispatch@frontrangeplumbing.example · Mon-Sat, 7am-6pm · 24/7 emergency line</p>
+      </div>
+      <a class="btn btn-primary" href="tel:(303) 555-0114">Call now</a>
+    </div>
+  </div>
+</section><footer>
+  <div class="wrap">
+    <p><strong>Front Range Plumbing Co</strong> · 2219 Larimer St, Denver</p>
+    <p>License #PL-24817 · Mon-Sat, 7am-6pm · Mon-Sat, 7am-6pm · 24/7 emergency line</p>
+    <p class="credit">Site by The MBC Group</p>
+  </div>
+</footer><a class="callbar" href="tel:(303) 555-0114">Tap to call (303) 555-0114</a>
+
+<script>
+/* Onboarding wiring: the webhook writes site.config.json values into every
+   [data-field] node at build time; this runtime pass covers preview deploys. */
+fetch('site.config.json').then(r => r.json()).then(cfg => {
+  document.querySelectorAll('[data-field]').forEach(el => {
+    const v = cfg[el.dataset.field];
+    if (v && !v.startsWith('{{')) el.textContent = v;
+  });
+  document.title = (cfg.business_name || '').replace(/\{\{.*\}\}/, 'Business') + ' | ' + cfg.city + ' ' + (cfg.trade || '');
+});
+</script>
+</body>
+</html>

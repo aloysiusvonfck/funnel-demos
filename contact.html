@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact | The MBC Group Website Gallery</title>
+<meta name="description" content="Start your MBC Group website: book a session, or reach us at information@mbcgroup.ai or (303) 250-9551.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="design/tokens.css">
+<link rel="stylesheet" href="design/mbc-kit.css">
+<style>
+  body { margin: 0; }
+  .hero { position: relative; min-height: 82vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 32px 64px; overflow: hidden; }
+  .hero > *:not(.mbc-hero-art) { position: relative; z-index: 1; }
+  .hero .rule { width: 40%; }
+  .hero .ctas { margin-top: 26px; }
+  .lanes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 32px; }
+  .lane { display: flex; flex-direction: column; gap: 10px; padding: 20px; min-height: 172px; }
+  .lane h3 { margin: 0; }
+  .lane .demos { margin-top: auto; display: flex; flex-direction: column; gap: 4px; }
+  .lane .demos a { font: 400 12px var(--mbc-font-mono); text-transform: uppercase; letter-spacing: var(--mbc-mono-tracking); color: var(--mbc-accent); text-decoration: none; }
+  .lane .demos a:hover { color: var(--mbc-accent-pale); }
+  .lane .soon { font: 400 12px var(--mbc-font-mono); text-transform: uppercase; letter-spacing: var(--mbc-mono-tracking); color: var(--mbc-text-50); }
+  .pricing { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 32px; }
+  .price-card { padding: 26px; }
+  .price { font: 500 clamp(30px, 3vw, 44px)/1 var(--mbc-font-sans); color: var(--mbc-text); letter-spacing: -.04em; margin: 10px 0 12px; }
+  .price small { font: 400 12px var(--mbc-font-mono); text-transform: uppercase; letter-spacing: var(--mbc-mono-tracking); color: var(--mbc-text-50); display: block; margin-top: 10px; }
+  .price-card p { margin: 0; }
+  footer { padding: 48px 32px 64px; border-top: 1px solid var(--mbc-border-12); }
+  @media (max-width: 900px) { .lanes, .pricing { grid-template-columns: 1fr; } .hero { min-height: 70vh; } }
+</style>
+  .pagehead { padding: 110px 32px 8px; }
+  .pagehead h1 { margin: 8px 0 0; }
+  .mbc-nav a.active { color: var(--mbc-accent-pale); }
+  .contactgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 24px; }
+  @media (max-width: 900px) { .contactgrid { grid-template-columns: 1fr; } }
+
+</head>
+<body class="mbc-page">
+
+<nav class="mbc-nav">
+  <a href="#top" class="logo"><img src="https://mbcgroup.ai/assets/mbc-logo.png" alt="The MBC Group"></a>
+  <span class="divider"></span>
+  <div class="links">
+    <a class="mbc-link" href="index.html#lanes">Gallery</a>
+    <a class="mbc-link" href="index.html#why">Why us</a>
+    <a class="mbc-link" href="process.html">Process</a>
+    <a class="mbc-link" href="pricing.html">Pricing</a>
+  </div>
+  <a class="mbc-btn" class="mbc-link active" href="contact.html">Start your site</a>
+</nav><section class="mbc-section pagehead"><div class="mbc-section-head"><span class="mbc-section-num">[ CONTACT ]</span><h1 class="mbc-display-sm">Ready when you are</h1></div></section>
+<section class="mbc-section" style="padding-top:16px">
+  <p class="mbc-body" style="max-width:560px">Book a session, pick your demo, and we take it from there. A person signs off before anything ships.</p>
+  <p><a class="mbc-btn" href="https://mbcgroup.ai/book-a-session">Book a session</a></p>
+  <div class="contactgrid">
+    <div class="mbc-card" style="padding:20px"><em class="mbc-mono-label">Email</em><p class="mbc-body"><a style="color:var(--mbc-accent)" href="mailto:information@mbcgroup.ai">information@mbcgroup.ai</a></p></div>
+    <div class="mbc-card" style="padding:20px"><em class="mbc-mono-label">Phone</em><p class="mbc-body"><a style="color:var(--mbc-accent)" href="tel:+13032509551">(303) 250-9551</a></p></div>
+    <div class="mbc-card" style="padding:20px"><em class="mbc-mono-label">Studio</em><p class="mbc-body">3000 Lawrence St #32, Denver, CO 80205</p></div>
+  </div>
+</section><footer>
+  <p class="mbc-mono">The MBC Group · Denver, CO · mbcgroup.ai</p>
+  <p class="mbc-mono" style="color:var(--mbc-text-50)">Website gallery · 20 industries · flat pricing</p>
+</footer>
+
+</body>
+</html>
