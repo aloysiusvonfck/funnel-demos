@@ -64,6 +64,19 @@
     .hero { min-height: 0; padding-bottom: 56px; }
     .pagehead { padding-top: 84px; }
   }
+  /* polish: rebalance hero art toward the right and strengthen the dot field */
+  .hero .mbc-hero-art {
+    background:
+      radial-gradient(1350px 950px at 76% 20%, rgba(63, 66, 230, .52), transparent 66%),
+      radial-gradient(1050px 850px at 90% 82%, rgba(63, 66, 230, .34), transparent 64%),
+      radial-gradient(650px 560px at 42% 78%, rgba(40, 44, 180, .22), transparent 65%);
+  }
+  .hero .mbc-hero-art::before {
+    background-image: radial-gradient(circle, rgba(205, 208, 255, 1) 1.35px, transparent 1.7px);
+    background-size: 9px 9px;
+    -webkit-mask-image: radial-gradient(1250px 900px at 78% 28%, #000 0%, rgba(0, 0, 0, .8) 52%, rgba(0, 0, 0, .3) 74%, transparent 90%);
+    mask-image: radial-gradient(1250px 900px at 78% 28%, #000 0%, rgba(0, 0, 0, .8) 52%, rgba(0, 0, 0, .3) 74%, transparent 90%);
+  }
 </style>
 </head>
 <body class="mbc-page">
