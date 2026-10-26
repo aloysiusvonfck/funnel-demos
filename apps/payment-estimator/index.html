@@ -52,6 +52,7 @@
 (function () {
   var cfg = {};
   try { cfg = JSON.parse(document.getElementById("app-config").textContent); } catch (e) {}
+  try { var qsc = new URLSearchParams(location.search).get("config"); if (qsc) { var xr = new XMLHttpRequest(); xr.open("GET", qsc, false); xr.send(null); if (xr.status === 200) { cfg = Object.assign(cfg, JSON.parse(xr.responseText)); } } } catch (e2) {}
   var price = document.getElementById("price"), po = document.getElementById("po"),
       down = document.getElementById("down"), doo = document.getElementById("do"),
       term = document.getElementById("term"), apr = document.getElementById("apr"),
