@@ -54,6 +54,13 @@
   .carecard .mbc-btn { flex:none; }
   .ctagrid { display:grid; grid-template-columns:1.4fr 1fr; gap:28px; align-items:center; }
   @media (max-width:900px) { .ctagrid { grid-template-columns:1fr; } }
+  @media (max-width: 560px) {
+    .mbc-nav { flex-wrap: wrap; row-gap: 10px; }
+    .mbc-nav .links { order: 3; width: 100%; flex-wrap: wrap; gap: 12px 18px; }
+    .mbc-nav .links a { font-size: 13px; }
+    .hero { min-height: 0; padding-bottom: 56px; }
+    .pagehead { padding-top: 84px; }
+  }
 </style>
 </head>
 <body class="mbc-page">
