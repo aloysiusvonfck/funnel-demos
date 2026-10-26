@@ -65,7 +65,7 @@
       if (email) {
         location.href = "mailto:" + email + "?subject=" + encodeURIComponent("Service request") + "&body=" + encodeURIComponent(summary);
       }
-      show("Almost there.", "Copy this and text or call it in:\n\n" + summary);
+      show("Not submitted yet.", "No service-request endpoint is connected or the request could not be sent. Copy this and contact the business directly:\n\n" + summary);
     }
   });
 })();
