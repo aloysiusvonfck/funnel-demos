@@ -51,7 +51,9 @@ footer { border-top:1px solid var(--border); padding:26px 0; font-size:13.5px; o
 @media (max-width:820px) {
   .cards,.quotes { grid-template-columns:1fr; }
   .split { grid-template-columns:1fr; }
-  .bar nav { display:none; }
+  .bar { flex-wrap:wrap; }
+  .bar nav { display:flex; order:3; flex:1 1 100%; width:100%; margin-left:0; gap:14px; overflow-x:auto; padding:4px 0 8px; }
+  .bar nav a { white-space:nowrap; }
   .hero { padding:44px 0 36px; }
 }
 
