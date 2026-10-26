@@ -38,7 +38,7 @@
 <script type="application/json" id="app-config">
 {
   "title": "Book an appointment",
-  "note": "Pick a day and time. We confirm by text or call.",
+  "note": "Demo only: these are sample request times, not live calendar availability. No appointment is reserved until the business confirms by text or call.",
   "slotDays": 14,
   "closedDays": [0],
   "slots": ["9:00 AM", "11:00 AM", "1:00 PM", "3:00 PM"],
@@ -99,12 +99,12 @@
     }
     function fallback() {
       if (cfg.email) location.href = "mailto:" + cfg.email + "?subject=" + encodeURIComponent("Booking request") + "&body=" + encodeURIComponent(summary);
-      show("Almost there.", "Copy this and text or call it in:\n\n" + summary);
+      show("Not submitted yet.", "No booking system is connected. Copy this request and send it to the business by text or call:\n\n" + summary);
     }
     if (cfg.endpoint) {
       fetch(cfg.endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
         .then(function (r) { if (!r.ok) throw new Error("bad status"); })
-        .then(function () { show("Time requested.", "We confirm your slot shortly. If plans change, call us."); })
+        .then(function () { show("Request sent.", "Your request reached the configured endpoint. This is not an appointment confirmation; the business must confirm availability."); })
         .catch(fallback);
     } else { fallback(); }
   });
