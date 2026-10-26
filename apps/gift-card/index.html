@@ -101,12 +101,12 @@
     }
     function fallback() {
       if (cfg.email) location.href = "mailto:" + cfg.email + "?subject=" + encodeURIComponent("Gift card order") + "&body=" + encodeURIComponent(summary);
-      show("Almost there.", "Copy this and send it over:\n\n" + summary);
+      show("Order not placed.", "No gift-card ordering endpoint is connected. Copy this request and send it to the business. Do not assume a gift card has been purchased or issued.\n\n" + summary);
     }
     if (cfg.endpoint) {
       fetch(cfg.endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
         .then(function (r) { if (!r.ok) throw new Error("bad status"); })
-        .then(function () { show("Gift card ordered.", "We email it within one business day.\n\n" + summary); })
+        .then(function () { show("Request received.", "The configured endpoint accepted the request. This is not proof of payment or an issued gift card; follow the business checkout and fulfillment instructions.\n\n" + summary); })
         .catch(fallback);
     } else { fallback(); }
   });
