@@ -29,16 +29,17 @@
   input, select, textarea { display:block; width:100%; margin-top:6px; padding:11px 12px; background:var(--surface); border:1px solid var(--b14); border-radius:10px; color:var(--t88); font:inherit; font-size:15px; }
   input:focus, select:focus, textarea:focus { outline:none; border-color:var(--accent); }
   .two { display:grid; grid-template-columns:1fr 1fr; gap:0 14px; }
-  .check { display:flex; gap:10px; align-items:flex-start; font-weight:400; color:var(--t75); margin:0 0 10px; }
-  .check input { width:auto; margin-top:4px; }
+  .check { display:flex; gap:12px; align-items:center; font-weight:400; color:var(--t75); margin:0 0 10px; padding:10px 12px; border:1px solid var(--b14); border-radius:10px; background:var(--surface); cursor:pointer; }
+  .check input { width:18px; height:18px; margin:0; flex:0 0 auto; accent-color:var(--accent); }
   .btn { display:inline-block; background:#fff; color:#05060f; border:0; border-radius:999px; padding:13px 26px; font:600 15px "Inter Tight",sans-serif; cursor:pointer; }
   .btn:hover { background:var(--accent-pale); }
   .hint { font-size:13px; color:var(--t58); font-weight:400; }
+  input::placeholder, textarea::placeholder { color:rgba(255,255,255,.45); opacity:1; }
   #out { margin-top:26px; }
   .card { border:1px solid var(--b14); background:var(--surface2); border-radius:14px; padding:22px; }
   .card a { color:var(--accent-pale); }
   .qa { font:500 11px/1.5 "DM Mono",monospace; letter-spacing:.05em; text-transform:uppercase; color:var(--t58); margin-top:10px; }
-  @media (max-width:640px) { .two { grid-template-columns:1fr; } .nav .links { display:none; } }
+  @media (max-width:640px) { .two { grid-template-columns:1fr; } .nav .links { display:none; } .btn { display:block; width:100%; text-align:center; } }
 </style>
 </head>
 <body>
@@ -62,8 +63,8 @@
   <form id="f">
   <fieldset>
     <legend>Your business</legend>
-    <label>Business name<input name="business_name" required></label>
-    <label>What kind of business<select name="trade" required><option value="home-services">Home services (plumbing, HVAC, electrical, roofing, landscaping)</option>
+    <label>Business name <span class="hint">(required)</span><input name="business_name" required></label>
+    <label>What kind of business <span class="hint">(pick the closest match)</span><select name="trade" required><option value="home-services">Home services</option>
 <option value="restaurants">Restaurant or cafe</option>
 <option value="salons">Salon, barbershop or spa-adjacent beauty</option>
 <option value="law-offices">Law office</option>
@@ -84,12 +85,12 @@
 <option value="accounting-tax">Accounting or tax</option>
 <option value="spa-massage">Spa or massage</option></select></label>
     <div class="two">
-      <label>City<input name="city" required></label>
+      <label>City <span class="hint">(required)</span><input name="city" required></label>
       <label>State<input name="state" placeholder="CO"></label>
     </div>
     <div class="two">
-      <label>Phone<input name="phone" required></label>
-      <label>Email<input name="email" type="email" required></label>
+      <label>Phone <span class="hint">(required)</span><input name="phone" required></label>
+      <label>Email <span class="hint">(required)</span><input name="email" type="email" required></label>
     </div>
     <label>Street address<input name="address"></label>
     <div class="two">
@@ -100,11 +101,11 @@
   </fieldset>
   <fieldset>
     <legend>Pick your tier</legend>
-    <label>Tier<select name="tier" required>
-      <option value="launch">Launch, $350 one-time: five pages, live in 48 hours</option>
-      <option value="growth">Growth, $1,200 one-time: custom copy, apps, neighborhood pages</option>
-      <option value="custom">Custom, $3,000+: scoped and priced with our founder</option>
-    </select></label>
+    <label>Tier <span class="hint">(required)</span><select name="tier" required>
+      <option value="launch">Launch, $350 one-time</option>
+      <option value="growth">Growth, $1,200 one-time</option>
+      <option value="custom">Custom, $3,000+</option>
+    </select></label><p class="hint" style="margin:-10px 0 16px">Launch: five pages live in 48 hours. Growth: custom copy, interactive apps, neighborhood pages. Custom: scoped and priced with our founder.</p>
     <label style="font-weight:400" class="check"><input type="checkbox" name="add_ons" value="care_plan"> Add the care plan, $49/mo: weekly health checks and monthly content refreshes</label>
     <label style="font-weight:400" class="check"><input type="checkbox" name="add_ons" value="localization"> Neighborhood landing pages for every area you serve (Growth)</label>
     <label style="font-weight:400" class="check"><input type="checkbox" name="add_ons" value="legacy_rebuild"> Rebuild my old site instead of starting over</label>
